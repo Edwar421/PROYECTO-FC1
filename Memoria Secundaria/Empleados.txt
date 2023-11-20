@@ -1,0 +1,3 @@
+Juan,Pérez,CC,123456789,M,3151234567,1234567,juan@example.com,1990-05-15,Colombia,Bogotá,Medellín,Calle 123,Barrio XYZ,Programador,Sucursal A
+María,Gómez,CE,987654321,F,3007654321,7654321,maria@example.com,1988-10-20,México,Ciudad de México,Guadalajara,Avenida Principal,Barrio ABC,Diseñador,Sucursal B
+Pedro,Rodríguez,CC,567890123,M,3201112233,1112233,pedro@example.com,1995-12-08,Argentina,Buenos Aires,Córdoba,Calle Secundaria,Barrio 123,Analista,Sucursal C

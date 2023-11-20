@@ -1,0 +1,3 @@
+Sucursal A,Bogotá,Centro,Calle 123,Carlos
+Sucursal B,Medellín,El Poblado,Avenida Principal,María
+Sucursal C,Ciudad de México,Reforma,Avenida Principal,José
