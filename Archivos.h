@@ -21,8 +21,8 @@ private: string nombreArchivo;
     //Lista leidas de la memoria secundaria
 
     //Lista < Empleado > * empleados;
-    Lista < Ciudad > * ciudades;
-   Lista < Sucursal > * sucursales;
+	Lista < Ciudad > * ciudades;
+   	Lista < Sucursal > * sucursales;
 
 public: Archivos(string nombre) {
         nombreArchivo = nombre + ".txt";
@@ -30,7 +30,7 @@ public: Archivos(string nombre) {
     }
 
      void escribir(const std::string& contenido) {
-        std::ofstream archivo(nombreArchivo.c_str());  // Utiliza c_str() para obtener const char*
+        std::ofstream archivo(rutaArchivo.c_str());  // Utiliza c_str() para obtener const char*
         if (archivo.is_open()) {
             archivo << contenido;
             archivo.close();
