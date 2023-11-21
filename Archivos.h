@@ -8,6 +8,9 @@
 
 #include "Estructuras de Datos/Lista.h"
 
+#include "ClasesPrincipales/Sucursal.h"
+
+
 #include "ClasesPrincipales/Empleado.h"
 
 #include "LeerEntradas.h"
@@ -109,7 +112,7 @@ public: Archivos(string nombre) {
 	    archivo.close();
 	    return ciudades;
 	}
-	/*
+	
     //Del archivo Partidos, lee los partidos, crea los objetos de los partidos, los a�ade a la lista y retorna la lista
     Lista < Sucursal > * leerSucursales() {
         sucursales = new Lista < Sucursal > ();
@@ -129,7 +132,7 @@ public: Archivos(string nombre) {
 				getline(ss, direccionSucursal, ',') && getline(ss, gerenteSucursal)) {
                 if (!nombre.empty() && !gerenteSucursal.empty()) {
                 	
-                	Ciudad ciudadSucursal(ciudadSucursal);
+                	//PROBLEMA!!!!! Ciudad ciudadSucursal(ciudadSucursal);
 
                     Sucursal sucursal(nombre, ciudadSucursal, barrioSucursal, direccionSucursal, gerenteSucursal);
                     sucursales -> insertar(sucursal);
