@@ -28,24 +28,26 @@ public:
     void leerArchivos() {
         Archivos Ciudades("Ciudades");
         Archivos Sucursal("Sucursales");
-        Archivos Empleados("Empleados");
+        //Archivos Empleados("Empleados");
 
         ciudades = Ciudades.leerCiudades();
-        //sucursales = Sucursal.leerSucursales();
+        sucursales = Sucursal.leerSucursales();
         //empleados = Empleados.leerEmpleados();*/
     }
 };
 
 void Menu::Menus() {
     bool programa = true;
-
-    leerArchivos();
-
+	cout << "Edwar" <<endl;
+	leerArchivos();
+	cout << ";(" <<endl;
     //OpcionesConsultas opcionConsultas(ciudades /*sucursales, empleados*/); // Inicializa el objeto de la clase Opciones Consultas
     
 
     while (programa) { // Bucle infinito del programa
         system("cls");
+        cout << "chimba" << endl;
+        
         MostrarMenu();
         Opcion = leerEntrada(1,6);
 
@@ -59,7 +61,7 @@ void Menu::Menus() {
                         opcionLista.mostrarCiudades(ciudades);
                         system("Pause"); // Pausa el programa y espera a que se presione una tecla
                         break;
-                    }/*
+                    }
                     case 2: {
                         opcionLista.mostrarSucursales(sucursales);
                         system("Pause"); // Pausa el programa y espera a que se presione una tecla

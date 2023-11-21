@@ -11,15 +11,18 @@ private: OpcionesListas opcionLista;
 public:
     //Metodos para inicializar las sucursales , ciudades y los empleados
     //Con el fin de obtener los datos a la hora de insertar o modificar sin necesidad de repetir codigo
-    //Sucursal inicializarSucursal(Lista < Sucursal > * sucursales);
+    Sucursal inicializarSucursal(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades);
     Ciudad inicializarCiudad();
     //Empleado inicializarEmpleado(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades, Lista < Empleado > * empleados);
 };
-/*
-Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales) {
-    //Insertar Sucursal
-    string nombreSucursal, Ciudad ciudadSucursal, string barrioSucursal, string direccionSucursal, string gerenteSucursal;
 
+Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades) {
+    //Insertar Sucursal
+	string nombreSucursal;
+    Ciudad ciudadSucursal; 
+    string barrioSucursal;
+    string direccionSucursal;
+    string gerenteSucursal;
 	int opcionCiudadSucursal;
     bool SucursalValido = false;
     int i = 0;
@@ -44,7 +47,7 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales) {
 
         for (i = 0; i < sucursales -> getTam(); i++) {
             Sucursal SucursalAuxiliar = sucursales -> buscar(i);
-            if (SucursalAuxiliar.getNombre() == NombreSucursal || SucursalAuxiliar.getGerenteSucursal() == GerenteSucursal) {
+            if (SucursalAuxiliar.getNombreSucursal() == nombreSucursal || SucursalAuxiliar.getGerenteSucursal() == gerenteSucursal) {
                 cout << "El Nombre del Sucursal ya existe o ya hay un representante legal en un Sucursal" << endl;
                 break;
             }
@@ -56,14 +59,14 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales) {
         }
     }
     
-    Ciudad ciudadSucursal = ciudades -> buscar(OpcionCiudadSucursal);
+    ciudadSucursal = ciudades -> buscar(opcionCiudadSucursal);
     
     Sucursal Sucursal(nombreSucursal, ciudadSucursal, barrioSucursal, direccionSucursal, gerenteSucursal);
     
     
 
     return Sucursal;
-}*/
+}
 
 Ciudad Inicializar::inicializarCiudad() {
     //Se ingresan los datos de la nueva ciudad (Se necesita validaci�n cuando la ciudad ya existe)

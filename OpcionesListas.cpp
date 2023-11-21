@@ -12,7 +12,7 @@ public:
             cout << i << ". " << ciudad.getNombreCiudad() << endl;
         }
     }
-	/*
+	
     //2. Sucursales.
     void mostrarSucursales(Lista < Sucursal > * sucursales) {
         for (int i = 0; i < sucursales -> getTam(); i++) {
