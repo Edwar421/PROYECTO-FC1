@@ -9,8 +9,8 @@ class Menu {
 private:
     Lista<Ciudad> *ciudades;
     Lista<Sucursal> *sucursales;
-    /*Lista<Empleado> *empleados;
-    Inicializar inicializar;*/
+    Lista<Empleado> *empleados;
+    //Inicializar inicializar;
 	OpcionesListas opcionLista;
 public:
     int Opcion;
@@ -28,11 +28,11 @@ public:
     void leerArchivos() {
         Archivos Ciudades("Ciudades");
         Archivos Sucursal("Sucursales");
-        //Archivos Empleados("Empleados");
+        Archivos Empleados("Empleados");
 
         ciudades = Ciudades.leerCiudades();
         sucursales = Sucursal.leerSucursales();
-        //empleados = Empleados.leerEmpleados();*/
+        empleados = Empleados.leerEmpleados();
     }
 };
 
@@ -66,8 +66,15 @@ void Menu::Menus() {
                         opcionLista.mostrarSucursales(sucursales);
                         system("Pause"); // Pausa el programa y espera a que se presione una tecla
                         break;
-                    }/*
+                    }
                     case 3: {
+                        opcionLista.mostrarEmpleados(empleados);
+                        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+                        break;
+
+                        break;
+                    }/*
+                    case 4: {
                         string ciudad;
                         cout << "Elige la ciudad que desees ver los empleados" << endl;
                     	opcionLista.mostrarCiudades(ciudades);

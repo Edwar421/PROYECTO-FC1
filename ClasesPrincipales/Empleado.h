@@ -2,12 +2,29 @@
 #define EMPLEADO_H
 
 #include <string>
+#include <vector>
 
 #include "Ciudad.h"
-
 #include "Sucursal.h"
 
 using namespace std;
+
+class Hijo {
+private:
+    string nombre;
+    string fechaNacimiento;
+
+public:
+    Hijo(string nombre, string fechaNacimiento) : nombre(nombre), fechaNacimiento(fechaNacimiento) {}
+
+    string getNombre(){
+        return nombre;
+    }
+
+    string getFechaNacimiento(){
+        return fechaNacimiento;
+    }
+};
 
 class Empleado {
 private: 
@@ -26,6 +43,9 @@ private:
     string direccionResidencia;
     string barrioResidencia;
     string actividadLaboral;
+    char tieneHijos; // 'S' or 'N'
+    int numHijos;
+    vector<Hijo> hijos; // Listado de hijos
     Sucursal sucursal;
     
 
@@ -43,12 +63,13 @@ public: Empleado() {
         direccionResidencia = "";
     	barrioResidencia = "";
         actividadLaboral = "";
-        //hijos = 'H';
+        tieneHijos = 'N';
+        numHijos = 0;
     }
 
     Empleado(string nombre, string apellido, string tipoIdentificacion, string numIdentificacion, char sexo, string telefonoCelular,
 			string telefonoFijo, string email, string fechaNacimiento, string paisNacimiento, Ciudad ciudadNacimiento, Ciudad ciudadResidencia, string direccionResidencia, 
-			string barrioResidencia, string actividadLaboral, Sucursal sucursal) {
+			string barrioResidencia, string actividadLaboral, char tieneHijos, int numHijos, Sucursal sucursal) {
         this -> nombre = nombre;
         this -> apellido = apellido;
         this -> tipoIdentificacion = tipoIdentificacion;
@@ -64,6 +85,8 @@ public: Empleado() {
         this -> direccionResidencia = direccionResidencia;
         this -> barrioResidencia = barrioResidencia;
         this -> actividadLaboral = actividadLaboral;
+        this -> tieneHijos = tieneHijos;
+        this -> numHijos = numHijos;
         this -> sucursal = sucursal;
         
     }
@@ -116,6 +139,16 @@ public: Empleado() {
     }
     string getActividadLaboral() {
         return actividadLaboral;
+    }
+    char getTieneHijos()  {
+        return tieneHijos;
+    }
+
+    int getNumHijos()  {
+        return numHijos;
+    }
+    vector<Hijo> getHijos() const {
+        return hijos;
     }
     Sucursal getSucursal(){
     	return sucursal;
@@ -183,6 +216,17 @@ public: Empleado() {
     }
     void setSucursal(Sucursal sucursal) {
         Empleado::sucursal = sucursal;
+    }
+    void setTieneHijos(char tieneHijos) {
+        Empleado::tieneHijos = tieneHijos;
+    }
+
+    void setNumHijos(int numHijos) {
+        Empleado::numHijos = numHijos;
+    }
+
+    void agregarHijo(Hijo hijo) {
+        hijos.push_back(hijo);
     }
 };
 

@@ -2,14 +2,16 @@
 #define ARCHIVOS_H
 
 #include <fstream>
-
+#include <iostream>
 #include <sstream>
+#include <string>
 
 
 #include "Estructuras de Datos/Lista.h"
 
 #include "ClasesPrincipales/Sucursal.h"
 
+#include "ClasesPrincipales/Ciudad.h"
 
 #include "ClasesPrincipales/Empleado.h"
 
@@ -23,7 +25,7 @@ private: string nombreArchivo;
 
     //Lista leidas de la memoria secundaria
 
-    //Lista < Empleado > * empleados;
+    Lista < Empleado > * empleados;
 	Lista < Ciudad > * ciudades;
    	Lista < Sucursal > * sucursales;
 
@@ -143,56 +145,74 @@ public: Archivos(string nombre) {
         archivo.close();
         return sucursales;
     }
-/*
+
     //Del archivo empleados, lee los empleados, crea los objetos de los empleados, los aï¿½ade a la lista y retorna la lista
 
-    Lista < Empleado > * leerEmpleados() {
-        empleados = new Lista < Empleado > ();
+    Lista<Empleado>* leerEmpleados() {
+	    Lista<Empleado>* empleados = new Lista<Empleado>();
+	
+	    ifstream archivo(rutaArchivo.c_str());
+	    if (!archivo) {
+	        cout << "Error al abrir el archivo." << endl;
+	        return empleados;
+	    }
+	
+	    string linea;
+	    while (getline(archivo, linea)) {
+	        stringstream ss(linea);
+	        string nombre, apellido, tipoIdentificacion, numIdentificacion, sexoStr, telefonoCelular,
+	            telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNaci, ciudadResi, direccionResidencia,
+	            barrioResidencia, actividadLaboral, tieneHijosStr, numHijosStr, hijosInfo, sucursalStr;
+	
+	        if (getline(ss, nombre, ',') && getline(ss, apellido, ',') &&
+	            getline(ss, tipoIdentificacion, ',') && getline(ss, numIdentificacion, ',') &&
+	            getline(ss, sexoStr, ',') && getline(ss, telefonoCelular, ',') && getline(ss, telefonoFijo, ',') && getline(ss, email, ',') &&
+	            getline(ss, fechaNacimiento, ',') && getline(ss, paisNacimiento, ',') && getline(ss, ciudadNaci, ',') &&
+	            getline(ss, ciudadResi, ',') && getline(ss, direccionResidencia, ',') && getline(ss, barrioResidencia, ',') &&
+	            getline(ss, actividadLaboral, ',') && getline(ss, tieneHijosStr, ',') && getline(ss, numHijosStr, ',') &&
+	            getline(ss, hijosInfo, ',') && getline(ss, sucursalStr)) {
+	
+	            if (!nombre.empty() && !apellido.empty() && !tipoIdentificacion.empty() && !numIdentificacion.empty() &&
+	                !sexoStr.empty() && !telefonoCelular.empty() && !telefonoFijo.empty() && !fechaNacimiento.empty() && !paisNacimiento.empty() &&
+	                !ciudadNaci.empty() && !ciudadResi.empty() && !direccionResidencia.empty() &&
+	                !barrioResidencia.empty() && !actividadLaboral.empty() && !tieneHijosStr.empty() && !numHijosStr.empty() && !sucursalStr.empty()) {
+	
+	                char sexo = sexoStr[0];
+	                cout<<"hhhhhh"<<endl;
+	                char tieneHijos = tieneHijosStr[0];
+	                int numHijos = stoi(numHijosStr);
+	                
 
-        ifstream archivo(rutaArchivo);
-        if (!archivo) {
-            cout << "Error al abrir el archivo." << endl;
-            return empleados;
-        }
-
-        string linea;
-        while (getline(archivo, linea)) {
-            stringstream ss(linea);
-            string nombre, apellido, tipoIdentificacion, numIdentificacion, sexo, telefonoCelular,
-					telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia, 
-					barrioResidencia, actividadLaboral, sucursal
-
-            if (getline(ss, nombre, ',') && getline(ss, apellido, ',') &&
-                getline(ss, tipoIdentificacion, ',') && getline(ss, numIdentificacion, ',') &&
-                getline(ss, sexoStr, ',') && getline(ss, telefonoCelular, ',') && getline(ss, telefonoFijo, ',') && getline(ss, email, ',') &&
-                getline(ss, fechaNacimiento, ',')  && getline(ss, paisNacimiento, ',') && getline(ss, ciudadNacimiento, ',') &&
-                getline(ss, ciudadResidencia, ',') && getline(ss, direccionResidencia, ',') && getline(ss, barrioRedidencia, ',') && 
-				getline(ss, actividadLaboral, ',') && getline(ss, nombreSucursal)
-            {
-                if (!nombre.empty() && !apellido.empty() && !tipoIdentificacion.empty() && !numIdentificacion.empty() &&
-                    !sexoStr.empty() && !telefonoCelular.empty() && !telefonoFijo.empty() && !fechaNacimiento.empty() && !paisNacimiento.empty() &&
-                    !ciudadNacimiento.empty() && !ciudadResidencia.empty() && !direccionResidencia.empty() &&
-					!barrioResidencia.empty() && !actividadLaboral.empty() && !nombreSucursal.empty()) {
-
-                    char sexo = sexoStr[0];
-                    Ciudad ciudadNacimiento(ciudadNacimiento, " ", 0, 0);
-                    Ciudad ciudadResidencia(ciudadResidencia, " ", 0, 0);
-                    Sucursal sucursal(nombreSucursal, " ");
-
-
-                    //inicializa el empleado y lo aï¿½ade en la lista
-                    Empleado empleado(nombre, apellido, tipoIdentificacion, numIdentificacion, sexo, telefonoCelular,
-										telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia, 
-										barrioResidencia, actividadLaboral, sucursal);
-
-                    empleados -> insertar(empleado);
-                }
-            }
-        }
-
-        archivo.close();
-        return empleados;
-    }*/
-
+					cout<<"tt"<<endl;
+	                Ciudad ciudadNacimiento(ciudadNaci);
+	                Ciudad ciudadResidencia(ciudadResi);
+	                cout<<"ffff"<<endl;
+	                Sucursal sucursal(sucursalStr, ciudadResidencia, " ", " ", " "); 
+	                cout<<"ffff"<<endl;
+	
+	               Empleado nuevoEmpleado(nombre, apellido, tipoIdentificacion, numIdentificacion, sexo, telefonoCelular,
+										    telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia,
+										    barrioResidencia, actividadLaboral, tieneHijos, numHijos, sucursal);
+	
+	                // Procesar la información de los hijos
+	                if (tieneHijos == 'S') {
+	                    stringstream hijosStream(hijosInfo);
+	                    string hijoNombre, fechaNacimientoHijo;
+	                    while (getline(hijosStream, hijoNombre, ';') && getline(hijosStream, fechaNacimientoHijo, ';')) {
+	                        Hijo hijo(hijoNombre, fechaNacimientoHijo);
+	                        nuevoEmpleado.agregarHijo(hijo);
+	                    }
+	                }
+	
+	                empleados->insertar(nuevoEmpleado);
+	            }
+	        }
+	    }
+	
+	    archivo.close();
+	    return empleados;
+}
 };
+
+
 #endif

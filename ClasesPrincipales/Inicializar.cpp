@@ -4,6 +4,7 @@
 
 //#include "../OpcionesConsultas.cpp"
 
+#include <string>
 using namespace std;
 
 class Inicializar {
@@ -13,7 +14,7 @@ public:
     //Con el fin de obtener los datos a la hora de insertar o modificar sin necesidad de repetir codigo
     Sucursal inicializarSucursal(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades);
     Ciudad inicializarCiudad();
-    //Empleado inicializarEmpleado(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades, Lista < Empleado > * empleados);
+    Empleado inicializarEmpleado(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades, Lista < Empleado > * empleados);
 };
 
 Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades) {
@@ -23,6 +24,7 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista
     string barrioSucursal;
     string direccionSucursal;
     string gerenteSucursal;
+    
 	int opcionCiudadSucursal;
     bool SucursalValido = false;
     int i = 0;
@@ -62,8 +64,6 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista
     ciudadSucursal = ciudades -> buscar(opcionCiudadSucursal);
     
     Sucursal Sucursal(nombreSucursal, ciudadSucursal, barrioSucursal, direccionSucursal, gerenteSucursal);
-    
-    
 
     return Sucursal;
 }
@@ -86,7 +86,7 @@ Ciudad Inicializar::inicializarCiudad() {
 
     return ciudad;
 }
-/*
+
 Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades, Lista < Empleado > * empleados) {
     // Insertar Empleado (Se necesita validaciï¿½n de puesto, fecha nacimiento, estado civil)
 
@@ -94,6 +94,7 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
     string nombre, apellido, tipoIdentificacion, numIdentificacion, telefonoCelular, telefonoFijo, email, fechaNacimiento, paisNacimiento, direccionResidencia, 
 			barrioResidencia, actividadLaboral, sucursal;
     char sexo;
+    
 
     bool EmpleadoValido = false;
     int i = 0;
@@ -103,7 +104,7 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
         //Buscar el Sucursal perteneciente de la lista de sucursales y guardarla en el objeto Sucursal
 
         cout << "De los siguientes sucursales constituidos ,ï¿½ cual de ellos pertenece el Empleado ?" << endl;
-        opcionLista.mostrarsucursales(sucursales);
+        opcionLista.mostrarSucursales(sucursales);
         OpcionSucursal = leerEntrada(0,sucursales->getTam()-1);
 
         // Buscar la ciudad de nacimiento y residencia de la lista de ciudades y guardarla en los objetos propios
@@ -132,7 +133,7 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
         getline(cin, nombre);
 
         cout << "Ingrese el apellido del Empleado" << endl;
-        getline(cin, apellido);
+        
 
         cout << "Ingrese el tipo de identificacion que el Empleado posee 1.Cedula de Ciudadania - 2.Cedula de Extranjeria " << endl;
         int opcion = leerEntrada(1,2);
@@ -147,8 +148,10 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
         cout << "Ingrese el documento de identidad del Empleado" << endl;
         numIdentificacion = to_string(leerEntrada(0, 9999999999));
         
+        
         cout << "Ingrese el telefono fijo  del Empleado" << endl;
         telefonoFijo = to_string(leerEntrada(0, 9999999999));
+        
         
         cout << "Ingrese el telefono celular  del Empleado" << endl;
         telefonoCelular = to_string(leerEntrada(0, 9999999999));
@@ -184,7 +187,7 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
         for (int i = 0; i < empleados -> getTam(); i++) {
             Empleado EmpleadoAuxiliar = empleados -> buscar(i);
             if (EmpleadoAuxiliar.getNumIdentificacion() == numIdentificacion) {
-                cout << "Ya hay un Empleado con este numero de identificaciï¿½n" << endl;
+                cout << "Ya hay un Empleado con este numero de identificacion" << endl;
                 encontrado = true;
                 break;
             }
@@ -196,15 +199,41 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
     }
 
     //Creacion del objeto Empleado para aï¿½adirlo en la lista
-    Sucursal sucursal = sucursales -> buscar(OpcionSucursal);
+    Sucursal sucursalBuscada = sucursales -> buscar(OpcionSucursal);
     
 
     Ciudad ciudadNacimiento = ciudades -> buscar(OpcionNacimiento);
     Ciudad ciudadResidencia = ciudades -> buscar(OpcionResidencia);
+    Sucursal sucursalCopia(sucursalBuscada);
 
     Empleado empleado(nombre, apellido, tipoIdentificacion, numIdentificacion, sexo, telefonoCelular,
-			telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia, 
-			barrioResidencia, actividadLaboral, sucursal);
+        telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia,
+        barrioResidencia, actividadLaboral,'N', 0,  sucursalCopia);
 
-    return Empleado;
-}*/
+    // Solicitar información sobre los hijos
+    cout << "El Empleado tiene hijos? (S/N): ";
+    char tieneHijos;
+    cin >> tieneHijos;
+
+    if (toupper(tieneHijos) == 'S') {
+        cout << "Ingrese el número de hijos: ";
+        int numHijos = leerEntrada(0, 10); // Puedes ajustar el rango según tus necesidades
+
+        cin.ignore(); // Limpiar el buffer antes de la entrada de cadena
+
+        for (int i = 0; i < numHijos; ++i) {
+            cout << "Ingrese el nombre del hijo #" << i + 1 << ": ";
+            string nombreHijo;
+            getline(cin, nombreHijo);
+
+            cout << "Ingrese la fecha de nacimiento del hijo #" << i + 1 << ": ";
+            string fechaNacimientoHijo;
+            getline(cin, fechaNacimientoHijo);
+
+            Hijo hijo(nombreHijo, fechaNacimientoHijo);
+            empleado.agregarHijo(hijo);
+        }
+    }
+
+    return empleado;
+}
