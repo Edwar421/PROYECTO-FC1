@@ -34,7 +34,7 @@ private:
     string numIdentificacion;
     char sexo;
     string telefonoCelular;
-    string telefonoFijo;
+    string telefonoFijo;	
     string email;
     string fechaNacimiento;
     string paisNacimiento;

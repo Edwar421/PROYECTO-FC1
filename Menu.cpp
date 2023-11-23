@@ -1,6 +1,7 @@
 #include <stdlib.h>  //Libreria para limpiar pantalla
 #include <iostream>
 #include "LeerEntradas.h"
+#include <cctype>
 using namespace std;
 
 #include "ClasesPrincipales/Inicializar.cpp"
@@ -71,10 +72,40 @@ void Menu::Menus() {
                         opcionLista.mostrarEmpleados(empleados);
                         system("Pause"); // Pausa el programa y espera a que se presione una tecla
                         break;
-
+                    }
+                    case 4: {
+                    	char sexoBuscado;
+                        cout << "Ingrese el sexo por el cual desea filtrar (F/M): ";
+                		cin >> sexoBuscado;
+                		sexoBuscado = toupper(sexoBuscado);
+                		
+                		if (sexoBuscado == 'F' || sexoBuscado == 'M') {
+					        opcionLista.empleadosSexo(sexoBuscado, empleados);
+					    } else {
+					        cout << "Entrada no válida. Debe ingresar 'F' o 'M'." <<endl;
+					        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+					    }
+						
                         break;
                     }/*
-                    case 4: {
+                    case 5: {
+                        opcionLista.mostrarCiudades(ciudades);
+                        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+                        break;
+                    }
+                    case 6: {
+                        opcionLista.mostrarSucursales(sucursales);
+                        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+                        break;
+                    }
+                    case 7: {
+                        opcionLista.mostrarEmpleados(empleados);
+                        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+                        break;
+
+                        break;
+                    }
+                    case 8: {
                         string ciudad;
                         cout << "Elige la ciudad que desees ver los empleados" << endl;
                     	opcionLista.mostrarCiudades(ciudades);
@@ -390,8 +421,12 @@ void Menu::SubMenuListas() {
     cout << "Buscar Listas por categoria" << endl;
     cout << "1. Ciudades." << endl;
     cout << "2. Sucursales" << endl;
-    cout << "3. Todos los empleados de una ciudad." << endl;
-    cout << "4. Todos los empleados de una sucursal." << endl;
+    cout << "3. Todos los empleados de la empresa." << endl;
+    cout << "4. Sexo." << endl;
+    cout << "5. Actividad Laboral." << endl;
+    cout << "6. Numero de Hijos." << endl;
+    cout << "7. Empleados por sucursal." << endl;
+    cout << "8. Edad de los empleados." << endl;
 }
 
 void Menu::SubMenuConsultas() {

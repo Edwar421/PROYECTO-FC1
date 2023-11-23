@@ -31,4 +31,27 @@ public:
         }
         system("Pause");
     }
+    
+    //4. Sexo.
+    void empleadosSexo(char sexo, Lista < Empleado > * empleados) {
+        int cantidad = 0;
+        
+        if (sexo == 'M'){
+        	cout<<"Empleados Hombres"<<endl;
+		}else{
+			cout<<"Empleadas Mujeres"<<endl;
+		}
+        
+        for (int i = 0; i < empleados -> getTam(); i++) {
+            //Guardar el candidato buscado y devolver los atributos necesarios dada la validacion
+            Empleado empleado = empleados -> buscar(i);
+            if (empleado.getSexo() == sexo) {
+                cout << empleado.getNombre() <<" "<<empleado.getNumIdentificacion()<<endl;
+                cantidad++;
+            }
+        }
+
+        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+    }
+    
 };
