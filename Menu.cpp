@@ -19,7 +19,7 @@ public:
     void MostrarMenu();
     void SubMenuListas();
     void SubMenuConsultas();
-    void SubMenuEstadisticas();
+    void SubMenuNumeroDeHijos();
     void SubMenuInsercion();
     string elegirSucursal();
     string elegirCiudad();
@@ -50,7 +50,7 @@ void Menu::Menus() {
         cout << "chimba" << endl;
         
         MostrarMenu();
-        Opcion = leerEntrada(1,6);
+        Opcion = leerEntrada(1,4);
 
         switch (Opcion) {
             case 1: {
@@ -92,19 +92,23 @@ void Menu::Menus() {
                         opcionLista.mostrarActividadesLaborales(empleados);
 						system("Pause");
 						break;
-                    }/*
+                    }
                     case 6: {
-                        opcionLista.mostrarSucursales(sucursales);
+                    	SubMenuNumeroDeHijos();
+                    	int seleccion = leerEntrada(1,4);
+                        opcionLista.mostrarPorCantidadHijos(seleccion, empleados);
                         system("Pause"); // Pausa el programa y espera a que se presione una tecla
                         break;
-                    }
+                    }/*
                     case 7: {
-                        opcionLista.mostrarEmpleados(empleados);
+                        string ciudad;
+                        cout << "Elige la ciudad que desees ver los empleados" << endl;
+                    	opcionLista.mostrarSucursales(sucursales);
+                    	Opcion = leerEntrada(0,sucursales->getTam()-1);
+                        opcionLista.empleadosSucursal(sucursales->buscar(Opcion).getNombreSucursal(), empleados);
                         system("Pause"); // Pausa el programa y espera a que se presione una tecla
                         break;
-
-                        break;
-                    }
+                    }/*
                     case 8: {
                         string ciudad;
                         cout << "Elige la ciudad que desees ver los empleados" << endl;
@@ -437,6 +441,13 @@ void Menu::SubMenuConsultas() {
     cout << "4. Número de sucursales en las que trabaja un número de personas superior a un número dado." << endl;
     cout << "5. Obtener el número de hombres y el número de mujeres que trabajan en las diferentes sucursales." << endl;
     cout << "6. Dado un rango de edad y una actividad laborar mostrar la lista de trabajadores de esa edad." << endl;
+}
+
+void Menu::SubMenuNumeroDeHijos() {
+    cout << "1. Sin Hijos" << endl;
+    cout << "2. 1-2 hijos" << endl;
+    cout << "3. 3-4 hijos" << endl;
+    cout << "4. 4 o mas hijos" << endl;
 }
 
 void Menu::SubMenuInsercion() {

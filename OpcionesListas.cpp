@@ -106,5 +106,71 @@ public:
 	    }
 	
 	}
-	    
+	
+	//6.Cantidad de Hijos
+	void mostrarPorCantidadHijos(int seleccion, Lista<Empleado> *empleados) {
+	    int cantidad = 0;
+		
+		if(seleccion==1){
+		    cout << "Empleados sin hijos:" << endl;
+		    for (int i = 0; i < empleados->getTam(); i++) {
+		        Empleado empleado = empleados->buscar(i);
+		        if (empleado.getNumHijos() == 0) {
+		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cantidad++;
+		        }
+		    }
+		} else if (seleccion==2)	{
+		    cout << "\nEmpleados con 1-2 hijos:" << endl;
+		    for (int i = 0; i < empleados->getTam(); i++) {
+		        Empleado empleado = empleados->buscar(i);
+		        int numHijos = empleado.getNumHijos();
+		        if (numHijos >= 1 && numHijos <= 2) {
+		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cantidad++;
+		        }
+		    }
+	    } else if (seleccion==3){
+		    cout << "\nEmpleados con 3-4 hijos:" << endl;
+		    for (int i = 0; i < empleados->getTam(); i++) {
+		        Empleado empleado = empleados->buscar(i);
+		        int numHijos = empleado.getNumHijos();
+		        if (numHijos >= 3 && numHijos <= 4) {
+		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cantidad++;
+		        }
+		    }
+		} else {
+		    cout << "\nEmpleados con más de 4 hijos:" << endl;
+		    for (int i = 0; i < empleados->getTam(); i++) {
+		        Empleado empleado = empleados->buscar(i);
+		        int numHijos = empleado.getNumHijos();
+		        if (numHijos > 4) {
+		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cantidad++;
+		        }
+		    }
+		}
+	
+	    system("Pause"); // Pausa el programa y espera a que se presione una tecla
+	}
+	
+	//7. Lista de empleados por sucursal
+	/*void empleadosSucursal(string sucursal, Lista<Empleado> *empleados) {
+        int cantidad = 0;
+        for (int i = 0; i < empleados -> getTam(); i++) {
+            //Guardar el empleado buscado y devolver los atributos necesarios dada la validacion
+            Empleado empleado = empleados->buscar(i);
+            if (empleado.getSucursal().getNombreSucursal() == sucursal) {
+                cout << empleados -> buscar(i).getNombreCompleto() << endl;
+                cantidad++;
+            }
+        }
+
+        if (cantidad == 0) {
+            cout << "Esta ciudad no tiene empleados para esta categoria, verifique el ingreso" << endl;
+        }
+
+        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+    }*/
 };
