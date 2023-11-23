@@ -87,12 +87,12 @@ void Menu::Menus() {
 					    }
 						
                         break;
-                    }/*
-                    case 5: {
-                        opcionLista.mostrarCiudades(ciudades);
-                        system("Pause"); // Pausa el programa y espera a que se presione una tecla
-                        break;
                     }
+                    case 5: {
+                        opcionLista.mostrarActividadesLaborales(empleados);
+						system("Pause");
+						break;
+                    }/*
                     case 6: {
                         opcionLista.mostrarSucursales(sucursales);
                         system("Pause"); // Pausa el programa y espera a que se presione una tecla

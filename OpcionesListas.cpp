@@ -34,7 +34,7 @@ public:
     
     //4. Sexo.
     void empleadosSexo(char sexo, Lista < Empleado > * empleados) {
-        int cantidad = 0;
+        /*int cantidad = 0;
         
         if (sexo == 'M'){
         	cout<<"Empleados Hombres"<<endl;
@@ -51,7 +51,60 @@ public:
             }
         }
 
-        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+        system("Pause"); // Pausa el programa y espera a que se presione una tecla*/
+        Lista<Empleado> empleadosGenero; // Lista para almacenar empleados del género deseado
+	    int cantidad = 0;
+	
+	    if (sexo == 'M') {
+	        cout << "Empleados Hombres" << endl;
+	    } else {
+	        cout << "Empleadas Mujeres" << endl;
+	    }
+	
+	    for (int i = 0; i < empleados->getTam(); i++) {
+	        Empleado empleado = empleados->buscar(i);
+	        if (empleado.getSexo() == sexo) {
+	            cout << empleado.getNombre() << " " << empleado.getNumIdentificacion() << endl;
+	            cantidad++;
+	            empleadosGenero.insertar(empleado); // Almacena el empleado del género deseado en la lista
+	        }
+	    }
+	
+	    // Utiliza una pila para mostrar los empleados en orden inverso
+	    while (!empleadosGenero.lista_vacia()) {
+	        Empleado empleado = empleadosGenero.buscar(empleadosGenero.getTam() - 1);
+	        cout << "Invertido: " << empleado.getNombre() << " " << empleado.getNumIdentificacion() << endl;
+	        empleadosGenero.borrar(empleadosGenero.getTam() - 1);
+	    }
+	
+	    cout << "Cantidad de empleados: " << cantidad << endl;
+	
+	    system("Pause");
     }
     
+    //5. Actividad Laboral
+    void mostrarActividadesLaborales(Lista<Empleado> *empleados) {
+	    Lista<string> actividadesUnicas; // Lista para almacenar actividades laborales únicas
+
+	    // Recorre la lista de empleados y agrega las actividades laborales a la lista
+	    for (int i = 0; i < empleados->getTam(); i++) {
+	        Empleado empleado = empleados->buscar(i);
+	        string actividad = empleado.getActividadLaboral();
+	
+	        // Si la actividad laboral no existe en la lista, agrégala
+	        if (!actividadesUnicas.existe(actividad)) {
+	            actividadesUnicas.insertar(actividad);
+	        }
+	    }
+	
+	    // Muestra las actividades laborales únicas
+	    int index = 1;
+	    cout<< "Actividades Laborales"<<endl;
+	    for (int i = 0; i < actividadesUnicas.getTam(); i++) {
+	        cout << index << ". " << *actividadesUnicas.buscarApuntador(i) << endl;
+	        index++;
+	    }
+	
+	}
+	    
 };
