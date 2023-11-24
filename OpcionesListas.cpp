@@ -158,13 +158,15 @@ public:
 	
 	    system("Pause"); // Pausa el programa y espera a que se presione una tecla
 	}
-	/*
+	
 	//7. Lista de empleados por sucursal
-	void empleadosSucursal(string sucursal, Lista<Empleado> *empleados) {
+	void empleadosPorSucursal(string sucursal, Lista<Empleado> *empleados) {
         int cantidad = 0;
+        cout << "Empleados en la sucursal: " << sucursal << endl;
         for (int i = 0; i < empleados -> getTam(); i++) {
             //Guardar el empleado buscado y devolver los atributos necesarios dada la validacion
             Empleado empleado = empleados->buscar(i);
+            
             if (empleado.getSucursal().getNombreSucursal() == sucursal) {
                 cout << empleados -> buscar(i).getNombreCompleto() << endl;
                 cantidad++;
@@ -176,5 +178,5 @@ public:
         }
 
         system("Pause"); // Pausa el programa y espera a que se presione una tecla
-    }*/
+    }
 };

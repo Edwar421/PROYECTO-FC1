@@ -178,7 +178,6 @@ public: Archivos(string nombre) {
 	                !barrioResidencia.empty() && !actividadLaboral.empty() && !tieneHijosStr.empty() && !numHijosStr.empty() && !sucursalStr.empty()) {
 	
 	                char sexo = sexoStr[0];
-	                cout<<"hhhhhh"<<endl;
 	                char tieneHijos = tieneHijosStr[0];
 	                int numHijos = stoi(numHijosStr);
 	                

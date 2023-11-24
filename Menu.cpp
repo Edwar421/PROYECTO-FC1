@@ -101,12 +101,10 @@ void Menu::Menus() {
                         break;
                     }
                     case 7: {
-                        //string ciudad;
                         cout << "Elige la sucursal que desees ver los empleados" << endl;
                     	opcionLista.mostrarSucursales(sucursales);
-                    	Opcion = leerEntrada(0,sucursales->getTam()-1);
-                        opcionLista.empleadosSucursal(sucursales->buscar(Opcion).getNombreSucursal(), empleados);
-                        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+                        Opcion = leerEntrada(0,ciudades->getTam()-1);
+                        opcionLista.empleadosPorSucursal(sucursales->buscar(Opcion).getNombreSucursal(), empleados);
                         break;
                     }/*
                     case 8: {
