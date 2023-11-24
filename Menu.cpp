@@ -99,10 +99,10 @@ void Menu::Menus() {
                         opcionLista.mostrarPorCantidadHijos(seleccion, empleados);
                         system("Pause"); // Pausa el programa y espera a que se presione una tecla
                         break;
-                    }/*
+                    }
                     case 7: {
-                        string ciudad;
-                        cout << "Elige la ciudad que desees ver los empleados" << endl;
+                        //string ciudad;
+                        cout << "Elige la sucursal que desees ver los empleados" << endl;
                     	opcionLista.mostrarSucursales(sucursales);
                     	Opcion = leerEntrada(0,sucursales->getTam()-1);
                         opcionLista.empleadosSucursal(sucursales->buscar(Opcion).getNombreSucursal(), empleados);

@@ -128,13 +128,13 @@ public: Archivos(string nombre) {
         string linea;
         while (getline(archivo, linea)) {
             stringstream ss(linea);
-            string nombre, ciudadSucursal, barrioSucursal, direccionSucursal, gerenteSucursal;
+            string nombre, ciudadSucur, barrioSucursal, direccionSucursal, gerenteSucursal;
 
-            if (getline(ss, nombre, ',') && getline(ss, ciudadSucursal, ',') && getline(ss, barrioSucursal, ',') && 
+            if (getline(ss, nombre, ',') && getline(ss, ciudadSucur, ',') && getline(ss, barrioSucursal, ',') && 
 				getline(ss, direccionSucursal, ',') && getline(ss, gerenteSucursal)) {
                 if (!nombre.empty() && !gerenteSucursal.empty()) {
                 	
-                	//PROBLEMA!!!!! Ciudad ciudadSucursal(ciudadSucursal);
+                	Ciudad ciudadSucursal(ciudadSucur);
 
                     Sucursal sucursal(nombre, ciudadSucursal, barrioSucursal, direccionSucursal, gerenteSucursal);
                     sucursales -> insertar(sucursal);
@@ -183,12 +183,12 @@ public: Archivos(string nombre) {
 	                int numHijos = stoi(numHijosStr);
 	                
 
-					cout<<"tt"<<endl;
+					
 	                Ciudad ciudadNacimiento(ciudadNaci);
 	                Ciudad ciudadResidencia(ciudadResi);
-	                cout<<"ffff"<<endl;
+	                
 	                Sucursal sucursal(sucursalStr, ciudadResidencia, " ", " ", " "); 
-	                cout<<"ffff"<<endl;
+	                
 	
 	               Empleado nuevoEmpleado(nombre, apellido, tipoIdentificacion, numIdentificacion, sexo, telefonoCelular,
 										    telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia,

@@ -34,24 +34,7 @@ public:
     
     //4. Sexo.
     void empleadosSexo(char sexo, Lista < Empleado > * empleados) {
-        /*int cantidad = 0;
         
-        if (sexo == 'M'){
-        	cout<<"Empleados Hombres"<<endl;
-		}else{
-			cout<<"Empleadas Mujeres"<<endl;
-		}
-        
-        for (int i = 0; i < empleados -> getTam(); i++) {
-            //Guardar el candidato buscado y devolver los atributos necesarios dada la validacion
-            Empleado empleado = empleados -> buscar(i);
-            if (empleado.getSexo() == sexo) {
-                cout << empleado.getNombre() <<" "<<empleado.getNumIdentificacion()<<endl;
-                cantidad++;
-            }
-        }
-
-        system("Pause"); // Pausa el programa y espera a que se presione una tecla*/
         Lista<Empleado> empleadosGenero; // Lista para almacenar empleados del género deseado
 	    int cantidad = 0;
 	
@@ -104,8 +87,29 @@ public:
 	        cout << index << ". " << *actividadesUnicas.buscarApuntador(i) << endl;
 	        index++;
 	    }
+	    
+	    int opcion;
+	    cout << "Seleccione una actividad por su número: ";
+	    cin >> opcion;
+	
+	    // Verifica si la opción es válida
+	    if (opcion >= 1 && opcion <= actividadesUnicas.getTam()) {
+	        string actividadSeleccionada = *actividadesUnicas.buscarApuntador(opcion - 1);
+	
+	        // Muestra los empleados que tienen esa actividad laboral
+	        cout << "Empleados con la actividad laboral '" << actividadSeleccionada << "':" << endl;
+	        for (int j = 0; j < empleados->getTam(); j++) {
+	            Empleado empleado = empleados->buscar(j);
+	            if (empleado.getActividadLaboral() == actividadSeleccionada) {
+	                cout << "   - " << empleado.getNombre() << endl;
+	            }
+	        }
+	    } else {
+	        cout << "Opción no válida." << endl;
+	    }
 	
 	}
+	
 	
 	//6.Cantidad de Hijos
 	void mostrarPorCantidadHijos(int seleccion, Lista<Empleado> *empleados) {
@@ -154,9 +158,9 @@ public:
 	
 	    system("Pause"); // Pausa el programa y espera a que se presione una tecla
 	}
-	
+	/*
 	//7. Lista de empleados por sucursal
-	/*void empleadosSucursal(string sucursal, Lista<Empleado> *empleados) {
+	void empleadosSucursal(string sucursal, Lista<Empleado> *empleados) {
         int cantidad = 0;
         for (int i = 0; i < empleados -> getTam(); i++) {
             //Guardar el empleado buscado y devolver los atributos necesarios dada la validacion
@@ -168,7 +172,7 @@ public:
         }
 
         if (cantidad == 0) {
-            cout << "Esta ciudad no tiene empleados para esta categoria, verifique el ingreso" << endl;
+            cout << "Esta sucursal no tiene empleados para esta categoria, verifique el ingreso" << endl;
         }
 
         system("Pause"); // Pausa el programa y espera a que se presione una tecla
