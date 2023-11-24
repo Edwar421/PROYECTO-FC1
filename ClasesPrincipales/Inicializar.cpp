@@ -212,7 +212,7 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
 
     Empleado empleado(nombre, apellido, tipoIdentificacion, numIdentificacion, sexo, telefonoCelular,
         telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia,
-        barrioResidencia, actividadLaboral,'N', 0,  sucursalCopia);
+        barrioResidencia, actividadLaboral, 'N', 0,  sucursalCopia);//Arreglar
 
     // Solicitar información sobre los hijos
     cout << "El Empleado tiene hijos? (S/N): ";
@@ -227,6 +227,7 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
 
         for (int i = 0; i < numHijos; ++i) {
             cout << "Ingrese el nombre del hijo #" << i + 1 << ": ";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             string nombreHijo;
             getline(cin, nombreHijo);
 

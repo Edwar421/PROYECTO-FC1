@@ -369,21 +369,22 @@ void Menu::Menus() {
                 /*Opcion = 0;
                 //opcionConsultas.actualizar(ciudades, sucursales, empleados);
                 break;*/
-            }/*
+            }
             case 4: {
-                /*system("cls");
+                system("cls");
                 //FINALIZAR Y GUARDAR EN LOS ARCHIVOS PLANOS
 
                 //Escribir en el archivo plano los sucursales de la lista
-                Archivos sucursales("sucursales");
+                Archivos Sucursales("sucursales");
                 string textosucursales;
 
                 for (int i = 0; i < sucursales -> getTam(); i++) {
                     Sucursal sucursal = sucursales -> buscar(i); // Declaraci�n del partido de la lista para a�adir su informaci�n al texto plano
-                    textosucursales += sucursal.getNombre() + "\n";
-                }
+                    textosucursales += sucursal.getNombreSucursal() + "," + sucursal.getCiudadSucursal().getNombreCiudad() + "," + sucursal.getBarrioSucursal()+ "," + sucursal.getDireccionSucursal() + "," + sucursal.getGerenteSucursal() + "\n";
+        		};
+                
 
-                sucursales.escribir(textosucursales);*/
+                Sucursales.escribir(textosucursales);
 
                 //Escribir en el archivo plano las ciudades de la lista
 
@@ -398,24 +399,34 @@ void Menu::Menus() {
                 Ciudades.escribir(textoCiudades);
 
                 //Escribir en el archivo plano los empleados de la lista
-/*
-                Archivos empleados("empleados");
-                string textoempleados;
 
-                for (int i = 0; i < empleados -> getTam(); i++) {
-                    Empleado Empleado = empleados -> buscar(i);
-                    textoempleados += Empleado.getNombre() + "," + Empleado.getApellido() + "," + Empleado.getPuesto() + "," + Empleado.getNumIdentificacion() + "," + Empleado.getSexo() + "," + Empleado.getEstadoCivil() + "," + Empleado.getFechaNacimiento() + "," + Empleado.getCiudadNacimiento().getNombre() + "," + Empleado.getCiudadResidencia().getNombre() + "," + Empleado.getPartido().getNombre()+",0\n";
-                }
-                
-                empleados.escribir(textoempleados);
+                Archivos Empleados("empleados");
+string textoempleados;
+for (int i = 0; i < empleados->getTam(); i++) {
+    Empleado empleado = empleados->buscar(i);
+    vector<Hijo> hijos = empleado.getHijos(); // Obtener los hijos de cada empleado
+    string textoHijos;
+    for (size_t j = 0; j < hijos.size(); j++) {
+        textoHijos += hijos[j].getNombre() + "; " + hijos[j].getFechaNacimiento();
+        if (j != hijos.size() - 1) {
+            textoHijos += "; ";
+        }
+    }
+    textoempleados += empleado.getNombre() + "," + empleado.getApellido() + "," + empleado.getTipoIdentificacion() + "," + empleado.getNumIdentificacion() + "," +
+                      empleado.getSexo() + "," + empleado.getTelefonoCelular() + "," + empleado.getTelefonoFijo() + "," + empleado.getEmail() + "," + empleado.getFechaNacimiento() + "," +
+                      empleado.getPaisNacimiento() + "," + empleado.getCiudadNacimiento().getNombreCiudad() + "," + empleado.getCiudadResidencia().getNombreCiudad() + "," +
+                      empleado.getDireccionResidencia() + "," + empleado.getBarrioResidencia() + "," + empleado.getActividadLaboral() + "," + empleado.getTieneHijos() + "," +
+                      to_string(empleado.getNumHijos()) + "," + textoHijos + "," + empleado.getSucursal().getNombreSucursal() + "\n";
+}
+Empleados.escribir(textoempleados);
 
                 programa = false;
                 break;
-            }*/
+            }
         }
     }
 }
-//}
+
 void Menu::MostrarMenu() {
     cout << "Empresa X" << endl;
     cout << "Menu Principal" << endl;

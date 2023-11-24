@@ -147,7 +147,7 @@ public: Empleado() {
     int getNumHijos()  {
         return numHijos;
     }
-    vector<Hijo> getHijos() const {
+    vector<Hijo> getHijos() {
         return hijos;
     }
     Sucursal getSucursal(){
