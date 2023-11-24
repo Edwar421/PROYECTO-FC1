@@ -107,7 +107,7 @@ void Menu::Menus() {
                         Opcion = leerEntrada(0,ciudades->getTam()-1);
                         opcionLista.empleadosPorSucursal(sucursales->buscar(Opcion).getNombreSucursal(), empleados);
                         break;
-                    }/*
+                    }
                     case 8: {
                         SubMenuEdad();
                     	int seleccion = leerEntrada(1,5);
@@ -124,7 +124,7 @@ void Menu::Menus() {
 					    }
 
                         break;
-                    }*/
+                    }
                 }
                 break;
             }

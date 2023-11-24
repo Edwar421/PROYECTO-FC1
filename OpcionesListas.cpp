@@ -1,5 +1,5 @@
 #include <string>
-//#include <ctime>
+#include <ctime>
 
 class OpcionesListas {
 private:
@@ -180,7 +180,7 @@ public:
 
         system("Pause"); // Pausa el programa y espera a que se presione una tecla
     }
-    /*
+    
     //8. Lista por edad (18 a 24, 25 a 35, 36 a 45, 45 a 60, más de 60) y por sexo.
 	//Primero debemos crear una funcion que nos permita calcular la edad de los empleados
 	int calcularEdad(Empleado *auxPersona){
@@ -192,7 +192,7 @@ public:
 	    int mesNacimiento = stoi(auxPersona->getFechaNacimiento().substr(3, 2));
 	    int anioNacimiento = stoi(auxPersona->getFechaNacimiento().substr(6, 4));
 	    // Obtener la fecha actual
-	    time_t tiempoActual = time(nullptr);
+	    time_t tiempoActual = time(NULL);
 	    tm *fechaActual = localtime(&tiempoActual);
 	
 	    int diaActual = fechaActual->tm_mday;
@@ -209,14 +209,14 @@ public:
 	
 	    return edad;
 	}
-	/*
+	
 	void clasificarPorEdadEmpleados(Lista<Empleado> *empleados) {
-	    vector<Persona> edad18a24, edad25a35, edad36a45, edad46a60, masDe60;
+	    vector<Empleado> edad18a24, edad25a35, edad36a45, edad46a60, masDe60;
 	
 	    // Iterar sobre la lista de personas
 	    for (int i = 0; i < empleados->getTam(); i++) {
 	        Empleado empleado = empleados->buscar(i);
-	        int edad = calcularEdad(empleado);
+	        int edad = calcularEdad(&empleado);
 	
 	        // Clasificar por rango de edad
 	        if (edad >= 18 && edad <= 24) {
@@ -236,48 +236,65 @@ public:
 	void mostrarEdadYSexo(int seleccion, char sexo, Lista<Empleado> *empleados) {
 	    int cantidad = 0;
 		
-		if(seleccion==1){
-		    cout << "Empleados sin hijos:" << endl;
-		    for (int i = 0; i < empleados->getTam(); i++) {
-		        Empleado empleado = empleados->buscar(i);
-		        if (empleado.getNumHijos() == 0) {
-		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
-		            cantidad++;
-		        }
-		    }
+		if (seleccion == 1) {
+	        cout << "Empleados de 18 a 24 años y sexo " << sexo << ":" << endl;
+	        for (int i = 0; i < empleados->getTam(); i++) {
+	            Empleado empleado = empleados->buscar(i);
+	            int edad = calcularEdad(&empleado);
+	            if (edad >= 18 && edad <= 24 && empleado.getSexo() == sexo) {
+	                cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion()
+	                     << " Edad: " << edad << " Sexo: " << empleado.getSexo() << endl;
+	                cantidad++;
+	            }
+	        }
 		} else if (seleccion==2)	{
-		    cout << "\nEmpleados con 1-2 hijos:" << endl;
-		    for (int i = 0; i < empleados->getTam(); i++) {
-		        Empleado empleado = empleados->buscar(i);
-		        int numHijos = empleado.getNumHijos();
-		        if (numHijos >= 1 && numHijos <= 2) {
-		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
-		            cantidad++;
-		        }
-		    }
+		    cout << "Empleados de 25 a 35 años y sexo " << sexo << ":" << endl;
+	        for (int i = 0; i < empleados->getTam(); i++) {
+	            Empleado empleado = empleados->buscar(i);
+	            int edad = calcularEdad(&empleado);
+	            if (edad >= 25 && edad <= 35 && empleado.getSexo() == sexo) {
+	                cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion()
+	                     << " Edad: " << edad << " Sexo: " << empleado.getSexo() << endl;
+	                cantidad++;
+	            }
+	        }
 	    } else if (seleccion==3){
-		    cout << "\nEmpleados con 3-4 hijos:" << endl;
-		    for (int i = 0; i < empleados->getTam(); i++) {
-		        Empleado empleado = empleados->buscar(i);
-		        int numHijos = empleado.getNumHijos();
-		        if (numHijos >= 3 && numHijos <= 4) {
-		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
-		            cantidad++;
-		        }
-		    }
+		    cout << "Empleados de 36 a 45 años y sexo " << sexo << ":" << endl;
+	        for (int i = 0; i < empleados->getTam(); i++) {
+	            Empleado empleado = empleados->buscar(i);
+	            int edad = calcularEdad(&empleado);
+	            if (edad >= 36 && edad <= 45 && empleado.getSexo() == sexo) {
+	                cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion()
+	                     << " Edad: " << edad << " Sexo: " << empleado.getSexo() << endl;
+	                cantidad++;
+	            }
+	        }
+		} else if (seleccion == 4) {
+		    cout << "Empleados de 45 a 60 años y sexo " << sexo << ":" << endl;
+	        for (int i = 0; i < empleados->getTam(); i++) {
+	            Empleado empleado = empleados->buscar(i);
+	            int edad = calcularEdad(&empleado);
+	            if (edad >= 45 && edad <= 60 && empleado.getSexo() == sexo) {
+	                cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion()
+	                     << " Edad: " << edad << " Sexo: " << empleado.getSexo() << endl;
+	                cantidad++;
+	            }
+	        }
+		} else if (seleccion == 5) {
+			cout << "Empleados de más de 60 años y sexo " << sexo << ":" << endl;
+	        for (int i = 0; i < empleados->getTam(); i++) {
+	            Empleado empleado = empleados->buscar(i);
+	            int edad = calcularEdad(&empleado);
+	            if (edad >= 60 && edad <= 150 && empleado.getSexo() == sexo) {
+	                cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion()
+	                     << " Edad: " << edad << " Sexo: " << empleado.getSexo() << endl;
+	                cantidad++;
+	            }
+	        }
 		} else {
-		    cout << "\nEmpleados con más de 4 hijos:" << endl;
-		    for (int i = 0; i < empleados->getTam(); i++) {
-		        Empleado empleado = empleados->buscar(i);
-		        int numHijos = empleado.getNumHijos();
-		        if (numHijos > 4) {
-		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
-		            cantidad++;
-		        }
-		    }
+			cout << "Opción no válida." << endl;
 		}
-	
 	    system("Pause"); // Pausa el programa y espera a que se presione una tecla
 	}
-*/
+
 };
