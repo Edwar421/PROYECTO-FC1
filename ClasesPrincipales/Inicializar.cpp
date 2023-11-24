@@ -38,7 +38,8 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista
         opcionLista.mostrarCiudades(ciudades);
         opcionCiudadSucursal = leerEntrada(0,ciudades->getTam()-1);
         
-        cout << "Ingrese el nombre del Barrio donde se encuentra la Sucursal: ";		
+        cout << "Ingrese el nombre del Barrio donde se encuentra la Sucursal: ";
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');		
 	    getline(cin, barrioSucursal);
 	    
 	    cout << "Ingrese la direccion de la Sucursal: ";		
@@ -109,10 +110,11 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
 
         // Buscar la ciudad de nacimiento y residencia de la lista de ciudades y guardarla en los objetos propios
         
-        cout << "Ingrese el pais de nacimiento del empleado: ";		
+        cout << "Ingrese el pais de nacimiento del empleado: ";	
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');	
 	    getline(cin, paisNacimiento);
 
-        cout << "De las siguientes ciudades, �Cual de ella nacioel Empleado?" << endl;
+        cout << "De las siguientes ciudades, �Cual de ella nacio el Empleado?" << endl;
         opcionLista.mostrarCiudades(ciudades);
         OpcionNacimiento = leerEntrada(0,ciudades->getTam()-1);
 
@@ -120,7 +122,8 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
         opcionLista.mostrarCiudades(ciudades);
         OpcionResidencia = leerEntrada(0,ciudades->getTam()-1);
         
-        cout << "Ingrese el nombre del Barrio de residencia del empleado: ";		
+        cout << "Ingrese el nombre del Barrio de residencia del empleado: ";
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');		
 	    getline(cin, barrioResidencia);
 	    
 	    cout << "Ingrese la direccion de residencia del empleado: ";		
@@ -129,11 +132,11 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
         // A�adir los dem�s datos del Empleado
 
         cout << "Ingrese el nombre de Empleado" << endl;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, nombre);
 
         cout << "Ingrese el apellido del Empleado" << endl;
-        
+        getline(cin, apellido);
 
         cout << "Ingrese el tipo de identificacion que el Empleado posee 1.Cedula de Ciudadania - 2.Cedula de Extranjeria " << endl;
         int opcion = leerEntrada(1,2);
@@ -156,7 +159,8 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
         cout << "Ingrese el telefono celular  del Empleado" << endl;
         telefonoCelular = to_string(leerEntrada(0, 9999999999));
         
-        cout << "Ingrese el email del empleado: ";		
+        cout << "Ingrese el email del empleado: ";	
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');	
 	    getline(cin, email);
 	    
 	    
@@ -227,8 +231,16 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
             getline(cin, nombreHijo);
 
             cout << "Ingrese la fecha de nacimiento del hijo #" << i + 1 << ": ";
-            string fechaNacimientoHijo;
-            getline(cin, fechaNacimientoHijo);
+            cout << "Dia: " << endl;
+	        int dia = leerEntrada(1,31);
+	        cout << "Mes: " << endl;
+	        int mes = leerEntrada(1,12);
+	        cout << "Año: " << endl;
+	        int anio = leerEntrada(2000, 2022);
+	        string sdia = (dia>9)? to_string(dia):"0"+to_string(dia);
+	        string smes = (mes>9)? to_string(mes):"0"+to_string(mes);
+	        string sanio = to_string(anio);
+	        string fechaNacimientoHijo = sdia+"/"+smes+"/"+sanio;
 
             Hijo hijo(nombreHijo, fechaNacimientoHijo);
             empleado.agregarHijo(hijo);

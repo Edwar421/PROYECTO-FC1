@@ -1,4 +1,5 @@
 #include <string>
+//#include <ctime>
 
 class OpcionesListas {
 private:
@@ -179,4 +180,104 @@ public:
 
         system("Pause"); // Pausa el programa y espera a que se presione una tecla
     }
+    /*
+    //8. Lista por edad (18 a 24, 25 a 35, 36 a 45, 45 a 60, m�s de 60) y por sexo.
+	//Primero debemos crear una funcion que nos permita calcular la edad de los empleados
+	int calcularEdad(Empleado *auxPersona){
+	    if(auxPersona->getFechaNacimiento().length() != 10)
+	        return 0;
+	
+	    // Se calcular la edad partiendo en sub string con las posiciones necesarias para obtener dia, mes, anio
+	    int diaNacimiento = stoi(auxPersona->getFechaNacimiento().substr(0, 2));
+	    int mesNacimiento = stoi(auxPersona->getFechaNacimiento().substr(3, 2));
+	    int anioNacimiento = stoi(auxPersona->getFechaNacimiento().substr(6, 4));
+	    // Obtener la fecha actual
+	    time_t tiempoActual = time(nullptr);
+	    tm *fechaActual = localtime(&tiempoActual);
+	
+	    int diaActual = fechaActual->tm_mday;
+	    int mesActual = fechaActual->tm_mon + 1;      // tm_mon está basado en 0
+	    int anioActual = fechaActual->tm_year + 1900; // tm_year cuenta los años desde 1900
+	
+	    // Calcular la edad
+	    int edad = anioActual - anioNacimiento;
+	    if (mesActual < mesNacimiento || (mesActual == mesNacimiento && diaActual < diaNacimiento))
+	    {
+	        // No se ha cumplido el cumpleaños este año
+	        edad--;
+	    }
+	
+	    return edad;
+	}
+	/*
+	void clasificarPorEdadEmpleados(Lista<Empleado> *empleados) {
+	    vector<Persona> edad18a24, edad25a35, edad36a45, edad46a60, masDe60;
+	
+	    // Iterar sobre la lista de personas
+	    for (int i = 0; i < empleados->getTam(); i++) {
+	        Empleado empleado = empleados->buscar(i);
+	        int edad = calcularEdad(empleado);
+	
+	        // Clasificar por rango de edad
+	        if (edad >= 18 && edad <= 24) {
+	            edad18a24.push_back(empleado);
+	        } else if (edad >= 25 && edad <= 35) {
+	            edad25a35.push_back(empleado);
+	        } else if (edad >= 36 && edad <= 45) {
+	            edad36a45.push_back(empleado);
+	        } else if (edad >= 46 && edad <= 60) {
+	            edad46a60.push_back(empleado);
+	        } else {
+	            masDe60.push_back(empleado);
+	        }
+	    }
+	}
+	
+	void mostrarEdadYSexo(int seleccion, char sexo, Lista<Empleado> *empleados) {
+	    int cantidad = 0;
+		
+		if(seleccion==1){
+		    cout << "Empleados sin hijos:" << endl;
+		    for (int i = 0; i < empleados->getTam(); i++) {
+		        Empleado empleado = empleados->buscar(i);
+		        if (empleado.getNumHijos() == 0) {
+		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cantidad++;
+		        }
+		    }
+		} else if (seleccion==2)	{
+		    cout << "\nEmpleados con 1-2 hijos:" << endl;
+		    for (int i = 0; i < empleados->getTam(); i++) {
+		        Empleado empleado = empleados->buscar(i);
+		        int numHijos = empleado.getNumHijos();
+		        if (numHijos >= 1 && numHijos <= 2) {
+		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cantidad++;
+		        }
+		    }
+	    } else if (seleccion==3){
+		    cout << "\nEmpleados con 3-4 hijos:" << endl;
+		    for (int i = 0; i < empleados->getTam(); i++) {
+		        Empleado empleado = empleados->buscar(i);
+		        int numHijos = empleado.getNumHijos();
+		        if (numHijos >= 3 && numHijos <= 4) {
+		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cantidad++;
+		        }
+		    }
+		} else {
+		    cout << "\nEmpleados con m�s de 4 hijos:" << endl;
+		    for (int i = 0; i < empleados->getTam(); i++) {
+		        Empleado empleado = empleados->buscar(i);
+		        int numHijos = empleado.getNumHijos();
+		        if (numHijos > 4) {
+		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cantidad++;
+		        }
+		    }
+		}
+	
+	    system("Pause"); // Pausa el programa y espera a que se presione una tecla
+	}
+*/
 };

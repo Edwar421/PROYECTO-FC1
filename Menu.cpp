@@ -11,7 +11,7 @@ private:
     Lista<Ciudad> *ciudades;
     Lista<Sucursal> *sucursales;
     Lista<Empleado> *empleados;
-    //Inicializar inicializar;
+    Inicializar inicializar;
 	OpcionesListas opcionLista;
 public:
     int Opcion;
@@ -20,7 +20,9 @@ public:
     void SubMenuListas();
     void SubMenuConsultas();
     void SubMenuNumeroDeHijos();
+    void SubMenuEdad();
     void SubMenuInsercion();
+    void EleccionSubMenuInsercion();
     string elegirSucursal();
     string elegirCiudad();
 
@@ -85,7 +87,6 @@ void Menu::Menus() {
 					        cout << "Entrada no válida. Debe ingresar 'F' o 'M'." <<endl;
 					        system("Pause"); // Pausa el programa y espera a que se presione una tecla
 					    }
-						
                         break;
                     }
                     case 5: {
@@ -108,11 +109,19 @@ void Menu::Menus() {
                         break;
                     }/*
                     case 8: {
-                        string ciudad;
-                        cout << "Elige la ciudad que desees ver los empleados" << endl;
-                    	opcionLista.mostrarCiudades(ciudades);
-                    	Opcion = leerEntrada(0,ciudades->getTam()-1);
-                        opcionLista.empleados(ciudades->buscar(Opcion).getNombre(), empleados);
+                        SubMenuEdad();
+                    	int seleccion = leerEntrada(1,5);
+                        char sexoBuscado;
+                        cout << "Ingrese el sexo por el cual desea filtrar (F/M): ";
+                		cin >> sexoBuscado;
+                		sexoBuscado = toupper(sexoBuscado);
+                		
+                		if (sexoBuscado == 'F' || sexoBuscado == 'M') {
+					        opcionLista.mostrarEdadYSexo(seleccion, sexoBuscado, empleados);
+					    } else {
+					        cout << "Entrada no válida. Debe ingresar 'F' o 'M'." <<endl;
+					        system("Pause"); // Pausa el programa y espera a que se presione una tecla
+					    }
 
                         break;
                     }*/
@@ -168,12 +177,12 @@ void Menu::Menus() {
 
                 switch (Opcion) {
                     case 1: { //Opciones para insertar
-                        /*EleccionSubMenuInsercion();
+                        EleccionSubMenuInsercion();
                         Opcion = leerEntrada(1,3);
                         switch (Opcion) {
                             case 1: {
-                                //Creaciï¿½n del Objeto partido
-                                Sucursal nuevaSucursal = inicializar.inicializarSucursal(sucursales);
+                                //Creaciï¿½n del Objeto Sucursal
+                                Sucursal nuevaSucursal = inicializar.inicializarSucursal(sucursales, ciudades);
                                 //Inserciï¿½n en la lista de sucursales
                                 sucursales -> insertar(nuevaSucursal);
 
@@ -184,9 +193,7 @@ void Menu::Menus() {
 
                                 //Creacion del objeto Empleado para aï¿½adirlo en la lista
                                 Empleado nuevoEmpleado = inicializar.inicializarEmpleado(sucursales, ciudades, empleados);
-                                //Inserciï¿½n en la lista de empleados
-                                if(!(nuevoEmpleado.getNombre() == ""))
-                                    empleados -> insertar(nuevoEmpleado);
+                                empleados -> insertar(nuevoEmpleado);
                                 break;
                             }
                             case 3: {
@@ -196,11 +203,11 @@ void Menu::Menus() {
                                 //Insercion en la lista de ciudades
                                 ciudades -> insertar(NuevaCiudad);
                                 break;
-                            }*/
+                            }
                         }
                         break;
                     }
-                    /*case 2: { //Opciones para Modificar
+                    case 2: { //Opciones para Modificar
                         EleccionSubMenuInsercion();
                         Opcion = leerEntrada(1,3);
                         switch (Opcion) {
@@ -208,20 +215,20 @@ void Menu::Menus() {
                                 //Encontrar el partido a modificar
                                 string NombreSucursal;
                                 cout << "¿Que sucursal deseas modificar?" << endl;
-                                opcionLista.mostrarsucursales(sucursales);
+                                opcionLista.mostrarSucursales(sucursales);
                                 Opcion = leerEntrada(0,sucursales->getTam()-1);
 
-                                string auxNombreSucursal = sucursales->buscar(Opcion).getNombre();
+                                string auxNombreSucursal = sucursales->buscar(Opcion).getNombreSucursal();
 
                                 //Inicializar Partido
-                                Sucursal nuevaSucursal = inicializar.inicializarSucursal(sucursales);
+                                Sucursal nuevaSucursal = inicializar.inicializarSucursal(sucursales, ciudades);
 
                                 sucursales -> modificar(nuevaSucursal, Opcion);
 
                                 for(int i = 0; i < empleados->getTam(); i++)
                                 {
                                     Empleado auxEmpleado = empleados->buscar(i);
-                                    if(auxEmpleado.getSucursal().getNombre() == auxNombreSucursal)
+                                    if(auxEmpleado.getSucursal().getNombreSucursal() == auxNombreSucursal)
                                     {
                                         auxEmpleado.setSucursal(nuevaSucursal);
                                         empleados->modificar(auxEmpleado,i);
@@ -237,7 +244,7 @@ void Menu::Menus() {
                                 int Opcion;
 
                                 cout << "Selecciona el Empleado que deseas modificar" << endl;
-                                opcionLista.mostrarempleados(empleados);
+                                opcionLista.mostrarEmpleados(empleados);
                                 Opcion = leerEntrada(0,empleados->getTam()-1);
 
                                 // Creaciï¿½n del objeto Empleado para aï¿½adirlo en la lista
@@ -256,7 +263,7 @@ void Menu::Menus() {
                                 opcionLista.mostrarCiudades(ciudades);
                                 ciudad = leerEntrada(0,ciudades->getTam()-1);
 
-                                string auxNombreCiudad = ciudades->buscar(ciudad).getNombre();
+                                string auxNombreCiudad = ciudades->buscar(ciudad).getNombreCiudad();
 
                                 //Creaciï¿½n del Objeto Ciudad
                                 Ciudad NuevaCiudad = inicializar.inicializarCiudad();
@@ -266,12 +273,12 @@ void Menu::Menus() {
                                 for(int i = 0; i < empleados->getTam(); i++)
                                 {
                                     Empleado auxEmpleado = empleados->buscar(i);
-                                    if(auxEmpleado.getCiudadNacimiento().getNombre() == auxNombreCiudad)
+                                    if(auxEmpleado.getCiudadNacimiento().getNombreCiudad() == auxNombreCiudad)
                                     {
                                         auxEmpleado.setCiudadNacimiento(NuevaCiudad);
                                         empleados->modificar(auxEmpleado,i);
                                     }
-                                    if(auxEmpleado.getCiudadResidencia().getNombre() == auxNombreCiudad)
+                                    if(auxEmpleado.getCiudadResidencia().getNombreCiudad() == auxNombreCiudad)
                                     {
                                         auxEmpleado.setCiudadResidencia(NuevaCiudad);
                                         empleados->modificar(auxEmpleado,i);
@@ -283,30 +290,30 @@ void Menu::Menus() {
                         }
                         break;
                     }
-                    case 3: { //Opciones para Eliminar //Validaciï¿½n, Si se eliminan partido, los empleados con ese partido quedan sin partido
+                    case 3: { //Opciones para Eliminar //Validaciï¿½n, Si se eliminan sucursal, los empleados con sucursal quedan sin Sucursal
                         EleccionSubMenuInsercion();
                         Opcion = leerEntrada(1,3);
                         switch (Opcion) {
                             case 1: { //Eliminar Partido
                                 int Eleccion;
                                 cout << "ï¿Que sucursal deseas Eliminar?" << endl;
-                                opcionLista.mostrarsucursales(sucursales);
+                                opcionLista.mostrarSucursales(sucursales);
                                 Eleccion = leerEntrada(0,sucursales->getTam()-1);
                                 //Guardar un partido auxiliar para eliminar los empleados con ese partido
-								Partido sucursalAux = sucursales->buscar(Eleccion);
+								Sucursal sucursalAux = sucursales->buscar(Eleccion);
 								
                                 sucursales -> borrar(Eleccion);
                                 
                                 for(int i = 0; i < empleados->getTam(); i++){
                                 	Empleado EmpleadoAux = empleados->buscar(i);
-                                    string aux1 = EmpleadoAux.getSucursal().getNombre();
-                                    string aux2 = partidoAux.getNombre();
+                                    string aux1 = EmpleadoAux.getSucursal().getNombreSucursal();
+                                    string aux2 = sucursalAux.getNombreSucursal();
 
-                                	if(EmpleadoAux.getSucursal().getNombre() == sucursalAux.getNombre()){
+                                	if(EmpleadoAux.getSucursal().getNombreSucursal() == sucursalAux.getNombreSucursal()){
                                 		empleados->borrar(i);
 									}
                                     EmpleadoAux = empleados->buscar(i);
-                                    while(EmpleadoAux.getSucursal().getNombre() == sucursalAux.getNombre())
+                                    while(EmpleadoAux.getSucursal().getNombreSucursal() == sucursalAux.getNombreSucursal())
                                     {
                                         empleados->borrar(i);
                                         EmpleadoAux = empleados->buscar(i);
@@ -320,7 +327,7 @@ void Menu::Menus() {
                             case 2: { //Eliminar Empleado
 
                                 cout << "¿Que Empleado deseas Eliminar?" << endl;
-                                opcionLista.mostrarempleados(empleados);
+                                opcionLista.mostrarEmpleados(empleados);
                                 Opcion = leerEntrada(0,empleados->getTam()-1);
 
                                 empleados -> borrar(Opcion);
@@ -341,11 +348,11 @@ void Menu::Menus() {
                                 
                                 for(int i = 0; i < empleados->getTam(); i++){
                                 	Empleado EmpleadoAux = empleados->buscar(i);
-                                	if(EmpleadoAux.getCiudadResidencia().getNombre() == ciudadAux.getNombre()){
+                                	if(EmpleadoAux.getCiudadResidencia().getNombreCiudad() == ciudadAux.getNombreCiudad()){
                                 		empleados->borrar(i);
 									}
                                     EmpleadoAux = empleados->buscar(i);
-                                    while(EmpleadoAux.getCiudadResidencia().getNombre() == ciudadAux.getNombre())
+                                    while(EmpleadoAux.getCiudadResidencia().getNombreCiudad() == ciudadAux.getNombreCiudad())
                                     {
                                         empleados->borrar(i);
                                         EmpleadoAux = empleados->buscar(i);
@@ -359,10 +366,10 @@ void Menu::Menus() {
                         break;
                     }
                 }
-                Opcion = 0;
-                opcionConsultas.actualizar(ciudades, sucursales, empleados);*/
-                break;
-            }
+                /*Opcion = 0;
+                //opcionConsultas.actualizar(ciudades, sucursales, empleados);
+                break;*/
+            }/*
             case 4: {
                 /*system("cls");
                 //FINALIZAR Y GUARDAR EN LOS ARCHIVOS PLANOS
@@ -408,7 +415,7 @@ void Menu::Menus() {
         }
     }
 }
-}
+//}
 void Menu::MostrarMenu() {
     cout << "Empresa X" << endl;
     cout << "Menu Principal" << endl;
@@ -428,7 +435,7 @@ void Menu::SubMenuListas() {
     cout << "5. Actividad Laboral." << endl;
     cout << "6. Numero de Hijos." << endl;
     cout << "7. Empleados por sucursal." << endl;
-    cout << "8. Edad de los empleados." << endl;
+    cout << "8. Edad y sexo de los empleados." << endl;
 }
 
 void Menu::SubMenuConsultas() {
@@ -448,18 +455,26 @@ void Menu::SubMenuNumeroDeHijos() {
     cout << "4. 4 o mas hijos" << endl;
 }
 
+void Menu::SubMenuEdad() {
+    cout << "1. 18 - 24 años" << endl;
+    cout << "2. 25 - 35 años" << endl;
+    cout << "3. 36 - 45 años" << endl;
+    cout << "4. 45 - 60 años" << endl;
+    cout << "5. Mas de 60 años" << endl;
+}
+
 void Menu::SubMenuInsercion() {
     cout << "1. Insertar" << endl;
     cout << "2. Modificar" << endl;
     cout << "3. Eliminar" << endl;
 }
-/*
+
 void Menu::EleccionSubMenuInsercion() {
     cout << "1. Sucursal" << endl;
     cout << "2. Empleado" << endl;
     cout << "3. Ciudad" << endl;
 }
-
+/*
 string Menu::elegirPartido()
 {
     int pos = 0;
