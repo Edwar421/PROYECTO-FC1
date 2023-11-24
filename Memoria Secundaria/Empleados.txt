@@ -1,4 +1,7 @@
-Juan,Pérez,Cédula,123456789,M,123-456-7890,987-654-3210,juan.perez@example.com,01/15/1985,Colombia,Bogotá,Medellín,Calle 123,Barrio ABC,Desarrollador,S,2,Ana; 03/20/2010; Carlos; 05/12/2015,Sucursal A
+Juan,Pérez,Cédula,123456789,M,123-456-7890,987-654-3210,juan.perez@example.com,01/15/1985,Colombia,Bogotá,Medellín,Calle 123,Barrio ABC,Desarrollador,S,2,Ana;        03/20/2010;        Carlos;        05/12/2015,Sucursal A
 Maria,Gomez,Pasaporte,987654321,F,456-789-0123,321-654-0987,maria.gomez@example.com,05/25/1990,México,Ciudad de México,Guadalajara,Avenida 456,Barrio XYZ,Analista de Marketing,N,0,,Sucursal B
-Carlos,Ruiz,Cédula,555555555,M,789-012-3456,210-987-6543,carlos.ruiz@example.com,12/10/1980,España,Madrid,Barcelona,Calle 789,Barrio LMN,Ingeniero de Software,S,1,Sofia; 08/05/2013,Sucursal C
-Juan,Reyes,Cedula de Extranjeria,567890,M,234,87654,jjjjjjj@rrrrrr,12/04/1990,Japon,Londres,Londres,25eee,ssssss,Desarrollador,N,0,esteban; 05/08/2006; ; 05/09/2008,babababa
+Carlos,Ruiz,Cédula,555555555,M,789-012-3456,210-987-6543,carlos.ruiz@example.com,12/10/1980,España,Madrid,Barcelona,Calle 789,Barrio LMN,Ingeniero de Software,S,1,Sofia;        08/05/2013,Sucursal C
+Juan,Reyes,Cedula de Extranjeria,567890,M,234,87654,jjjjjjj@rrrrrr,12/04/1990,Japon,Londres,Londres,25eee,ssssss,Desarrollador,N,0,,babababa
+Javier,Gil,Cedula de Extranjeria,677777,M,888,66666,jagol@ud,01/05/1990,Mexico,Bogotá,new york,4545454ssss,stststststs,Analista de Datoss,N,0,,sdfghjk
+Edwar,Vargas,Cedula de Ciudadania,10245,M,112333,3456,esvargas@,21/04/1980,Colombia,Bogotá,Bogotá,yhn,Kennedy,Desarrollador,s,1,,Sucursal B
+Sofia,Ayala,Cedula de Ciudadania,543,F,876,34567,sofia@ayala,15/09/1970,Colombia,Bogotá,Bogotá,4567777,chapinero,Desarrollador,s,2,Daniel; 05/06/2000; Camilo; 01/12/2006,Camino

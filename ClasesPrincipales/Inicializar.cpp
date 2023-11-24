@@ -201,6 +201,16 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
 	        EmpleadoValido = true;
 	    }
     }
+    
+    cout << "El Empleado tiene hijos? (S/N): ";
+    char tieneHijos;
+    cin >> tieneHijos;
+    
+	 int numHijos =0;
+    if (toupper(tieneHijos) == 'S') {
+        cout << "Ingrese el número de hijos: ";
+        numHijos = leerEntrada(0, 10);
+    }
 
     //Creacion del objeto Empleado para aï¿½adirlo en la lista
     Sucursal sucursalBuscada = sucursales -> buscar(OpcionSucursal);
@@ -212,23 +222,16 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
 
     Empleado empleado(nombre, apellido, tipoIdentificacion, numIdentificacion, sexo, telefonoCelular,
         telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia,
-        barrioResidencia, actividadLaboral, 'N', 0,  sucursalCopia);//Arreglar
+        barrioResidencia, actividadLaboral, tieneHijos, numHijos,  sucursalCopia);//Arreglar
 
     // Solicitar información sobre los hijos
-    cout << "El Empleado tiene hijos? (S/N): ";
-    char tieneHijos;
-    cin >> tieneHijos;
-
-    if (toupper(tieneHijos) == 'S') {
-        cout << "Ingrese el número de hijos: ";
-        int numHijos = leerEntrada(0, 10); // Puedes ajustar el rango según tus necesidades
-
+    
         cin.ignore(); // Limpiar el buffer antes de la entrada de cadena
 
         for (int i = 0; i < numHijos; ++i) {
+        	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        	string nombreHijo;
             cout << "Ingrese el nombre del hijo #" << i + 1 << ": ";
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            string nombreHijo;
             getline(cin, nombreHijo);
 
             cout << "Ingrese la fecha de nacimiento del hijo #" << i + 1 << ": ";
@@ -246,7 +249,7 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
             Hijo hijo(nombreHijo, fechaNacimientoHijo);
             empleado.agregarHijo(hijo);
         }
-    }
+    
 
     return empleado;
 }
