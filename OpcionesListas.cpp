@@ -1,5 +1,5 @@
 #include <string>
-#include <ctime>
+//#include <ctime>
 
 class OpcionesListas {
 private:
@@ -10,7 +10,7 @@ public:
         for (int i = 0; i < ciudades -> getTam(); i++) {
             //Guardar la ciudad buscada en una variable y devolver atributo nombre
             Ciudad ciudad = ciudades -> buscar(i);
-            cout << i << ". " << ciudad.getNombreCiudad() << endl;
+            cout << i << ". Ciudad: " << ciudad.getNombreCiudad() << ", Pais: " << ciudad.getPais() << endl;
         }
     }
 	
@@ -19,7 +19,7 @@ public:
         for (int i = 0; i < sucursales -> getTam(); i++) {
             //Guardar la sucursal buscada y devolver el atributo nombre
             Sucursal sucursal = sucursales -> buscar(i);
-            cout << i << "." << "Nombre :"  << sucursal.getNombreSucursal() << "Barrio: " << sucursal.getBarrioSucursal() << "Dirección: " << sucursal.getDireccionSucursal() << " Gerente: " << sucursal.getGerenteSucursal() << endl;
+            cout << i << "." << "Nombre:"  << sucursal.getNombreSucursal() << " Ciudad: " << sucursal.getCiudadSucursal().getNombreCiudad() << " Barrio: " << sucursal.getBarrioSucursal() << " Dirección: " << sucursal.getDireccionSucursal() << " Gerente: " << sucursal.getGerenteSucursal() << endl;
         }
     }
     
@@ -180,7 +180,7 @@ public:
 
         system("Pause"); // Pausa el programa y espera a que se presione una tecla
     }
-    
+    /*
     //8. Lista por edad (18 a 24, 25 a 35, 36 a 45, 45 a 60, más de 60) y por sexo.
 	//Primero debemos crear una funcion que nos permita calcular la edad de los empleados
 	int calcularEdad(Empleado *auxPersona){
@@ -296,5 +296,6 @@ void mostrarEdadYSexo(int seleccion, char sexo, Lista<Empleado> *empleados) {
 		}
 	    system("Pause"); // Pausa el programa y espera a que se presione una tecla
 	}
-
+	*/
+	
 };

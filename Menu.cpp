@@ -107,7 +107,7 @@ void Menu::Menus() {
                         Opcion = leerEntrada(0,sucursales->getTam()-1);
                         opcionLista.empleadosPorSucursal(sucursales->buscar(Opcion).getNombreSucursal(), empleados);
                         break;
-                    }
+                    }/*
 					case 8: {
                         SubMenuEdad();
                     	int seleccion = leerEntrada(1,5);
@@ -124,7 +124,7 @@ void Menu::Menus() {
 					    }
 
                         break;
-                    }
+                    }*/
                 }
                 break;
             }
@@ -380,7 +380,8 @@ void Menu::Menus() {
 
                 for (int i = 0; i < sucursales -> getTam(); i++) {
                     Sucursal sucursal = sucursales -> buscar(i); // Declaraci�n del partido de la lista para a�adir su informaci�n al texto plano
-                    textosucursales += sucursal.getNombreSucursal() + "," + sucursal.getCiudadSucursal().getNombreCiudad() + "," + sucursal.getBarrioSucursal()+ "," + sucursal.getDireccionSucursal() + "," + sucursal.getGerenteSucursal() + "\n";
+                    textosucursales += sucursal.getNombreSucursal() + "," + sucursal.getCiudadSucursal().getNombreCiudad() + "," + sucursal.getBarrioSucursal()+ 
+										"," + sucursal.getDireccionSucursal() + "," + sucursal.getGerenteSucursal() + "\n";
         		};
                 
 
@@ -393,7 +394,7 @@ void Menu::Menus() {
 
                 for (int i = 0; i < ciudades -> getTam(); i++) {
                     Ciudad ciudad = ciudades -> buscar(i);
-                    textoCiudades += ciudad.getNombreCiudad() + "\n";
+                    textoCiudades += ciudad.getNombreCiudad() + "," + ciudad.getPais() + "\n";
                 }
 
                 Ciudades.escribir(textoCiudades);
@@ -405,12 +406,12 @@ void Menu::Menus() {
 				for (int i = 0; i < empleados->getTam(); i++) {
 				    Empleado empleado = empleados->buscar(i);
 				    vector<Hijo> hijos = empleado.getHijos(); // Obtener los hijos de cada empleado
-				    string textoHijos;
+				    string textoHijos = " ";
 				    for (size_t j = 0; j < hijos.size(); j++) {
 				        textoHijos += hijos[j].getNombre() + "; " + hijos[j].getFechaNacimiento();
-				        if (j != hijos.size() - 1) {
-				            textoHijos += "; ";
-				        }
+						if (j != hijos.size() - 1) {
+						    textoHijos += "; ";
+						}
 				    }
 				    textoempleados += empleado.getNombre() + "," + empleado.getApellido() + "," + empleado.getTipoIdentificacion() + "," + empleado.getNumIdentificacion() + "," +
 				                      empleado.getSexo() + "," + empleado.getTelefonoCelular() + "," + empleado.getTelefonoFijo() + "," + empleado.getEmail() + "," + empleado.getFechaNacimiento() + "," +

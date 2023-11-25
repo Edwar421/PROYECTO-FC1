@@ -75,15 +75,11 @@ Ciudad Inicializar::inicializarCiudad() {
     cout << "Ingrese el nombre de la ciudad" << endl;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, nombreCiudad);
-    /*
-	cout << "Ingrese el barrio" << endl;
-    getline(cin, nombreBarrio);
-    cout << "Ingrese la direccion" << endl;
-    getline(cin, direccion);
+    
     cout << "Ingrese el Pais" << endl;
-    getline(cin, pais);*/
+    getline(cin, pais);
 
-    Ciudad ciudad(nombreCiudad);
+    Ciudad ciudad(nombreCiudad, pais);
 
     return ciudad;
 }

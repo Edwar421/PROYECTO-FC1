@@ -101,11 +101,11 @@ public: Archivos(string nombre) {
 	    string linea;
 	    while (getline(archivo, linea)) {
 	        stringstream ss(linea);
-	        string nombreCiudad;
+	        string nombreCiudad, pais;
 	
-	        if (getline(ss, nombreCiudad)) {
-	            if (!nombreCiudad.empty()) {
-	                Ciudad ciudad(nombreCiudad);
+	        if (getline(ss, nombreCiudad, ',') && getline(ss, pais)) {
+	            if (!nombreCiudad.empty() && !pais.empty()) {
+	                Ciudad ciudad(nombreCiudad, pais);
 	                ciudades->insertar(ciudad);
 	            }
 	        }
@@ -134,7 +134,7 @@ public: Archivos(string nombre) {
 				getline(ss, direccionSucursal, ',') && getline(ss, gerenteSucursal)) {
                 if (!nombre.empty() && !gerenteSucursal.empty()) {
                 	
-                	Ciudad ciudadSucursal(ciudadSucur);
+                	Ciudad ciudadSucursal(ciudadSucur, "");
 
                     Sucursal sucursal(nombre, ciudadSucursal, barrioSucursal, direccionSucursal, gerenteSucursal);
                     sucursales -> insertar(sucursal);
@@ -183,8 +183,8 @@ public: Archivos(string nombre) {
 	                
 
 					
-	                Ciudad ciudadNacimiento(ciudadNaci);
-	                Ciudad ciudadResidencia(ciudadResi);
+	                Ciudad ciudadNacimiento(ciudadNaci, "");
+	                Ciudad ciudadResidencia(ciudadResi, "");
 	                
 	                Sucursal sucursal(sucursalStr, ciudadResidencia, " ", " ", " "); 
 	                
