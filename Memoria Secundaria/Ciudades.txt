@@ -1,4 +1,11 @@
-Bogot√°
-Buenos Aires
-Londres
-new york
+Cali,Colombia
+Bogota,Colombia
+Buenos Aires,Argentina
+Ciudad de Mexico,Mexico
+Barcelona,Espa§a
+Madrid,Espa§a
+Caracas,Venezuela
+Quito,Ecuador
+Panama,Panama
+Santiago de Chile,Chile
+Medellin,Colombia
