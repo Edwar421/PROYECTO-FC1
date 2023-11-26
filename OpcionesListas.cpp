@@ -10,7 +10,7 @@ public:
         for (int i = 0; i < ciudades -> getTam(); i++) {
             //Guardar la ciudad buscada en una variable y devolver atributo nombre
             Ciudad ciudad = ciudades -> buscar(i);
-            cout << i << ". Ciudad: " << ciudad.getNombreCiudad() << ", Pais: " << ciudad.getPais() << endl;
+            cout << i << ". Ciudad: " << ciudad.getNombre() << ", Pais: " << ciudad.getPais() << endl;
         }
     }
 	
@@ -19,7 +19,7 @@ public:
         for (int i = 0; i < sucursales -> getTam(); i++) {
             //Guardar la sucursal buscada y devolver el atributo nombre
             Sucursal sucursal = sucursales -> buscar(i);
-            cout << i << "." << "Nombre:"  << sucursal.getNombreSucursal() << " Ciudad: " << sucursal.getCiudadSucursal().getNombreCiudad() << " Barrio: " << sucursal.getBarrioSucursal() << " Dirección: " << sucursal.getDireccionSucursal() << " Gerente: " << sucursal.getGerenteSucursal() << endl;
+            cout << i << "." << "Nombre:"  << sucursal.getNombre() << " Ciudad: " << sucursal.getCiudadSucursal().getNombre() << " Barrio: " << sucursal.getBarrioSucursal() << " Dirección: " << sucursal.getDireccionSucursal() << " Gerente: " << sucursal.getGerenteSucursal() << endl;
         }
     }
     
@@ -168,7 +168,7 @@ public:
             //Guardar el empleado buscado y devolver los atributos necesarios dada la validacion
             Empleado empleado = empleados->buscar(i);
             
-            if (empleado.getSucursal().getNombreSucursal() == sucursal) {
+            if (empleado.getSucursal().getNombre() == sucursal) {
                 cout << empleados -> buscar(i).getNombreCompleto() << endl;
                 cantidad++;
             }

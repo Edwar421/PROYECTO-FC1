@@ -8,7 +8,7 @@ using namespace std;
 
 class Sucursal {
     private:
-        string nombreSucursal;
+        string nombre;
         Ciudad ciudadSucursal;
         string barrioSucursal;
         string direccionSucursal;
@@ -18,8 +18,8 @@ class Sucursal {
     	
     	Sucursal() {} // Constructor vacï¿½o
     	
-        Sucursal(string nombreSucursal, Ciudad ciudadSucursal, string barrioSucursal, string direccionSucursal, string gerenteSucursal) {
-            this->nombreSucursal = nombreSucursal;
+        Sucursal(string nombre, Ciudad ciudadSucursal, string barrioSucursal, string direccionSucursal, string gerenteSucursal) {
+            this->nombre = nombre;
             this->ciudadSucursal = ciudadSucursal;
             this->barrioSucursal = barrioSucursal;
             this->direccionSucursal = direccionSucursal;
@@ -27,8 +27,8 @@ class Sucursal {
         }
 
         // Métodos getter para acceder a los atributos
-        string getNombreSucursal() { 
-			return nombreSucursal; 
+        string getNombre() { 
+			return nombre; 
 		}
 		
 		Ciudad getCiudadSucursal() {
@@ -50,13 +50,13 @@ class Sucursal {
         // Mï¿½todo toString para la clase Partido
 	    string toString() {
 	        string datos;
-	        datos = getNombreSucursal()+ "," + getGerenteSucursal();
+	        datos = getNombre()+ "," + getGerenteSucursal();
 	        return datos;
 	    }
 
     
-    void setNombreSucursal(string nombreSucursal) {
-        Sucursal::nombreSucursal = nombreSucursal;
+    void setNombre(string nombre) {
+        Sucursal::nombre = nombre;
     }
     
     void setCiudadSucursal(Ciudad ciudadSucursal) {

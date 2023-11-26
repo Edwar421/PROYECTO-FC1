@@ -50,7 +50,7 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista
 
         for (i = 0; i < sucursales -> getTam(); i++) {
             Sucursal SucursalAuxiliar = sucursales -> buscar(i);
-            if (SucursalAuxiliar.getNombreSucursal() == nombreSucursal || SucursalAuxiliar.getGerenteSucursal() == gerenteSucursal) {
+            if (SucursalAuxiliar.getNombre() == nombreSucursal || SucursalAuxiliar.getGerenteSucursal() == gerenteSucursal) {
                 cout << "El Nombre del Sucursal ya existe o ya hay un representante legal en un Sucursal" << endl;
                 break;
             }

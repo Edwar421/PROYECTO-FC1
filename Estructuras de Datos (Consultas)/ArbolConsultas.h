@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "Lista.h"
+#include "../Estructuras de Datos/Lista.h"
 
 #include "Queue.h"
 
@@ -81,7 +81,7 @@ void ArbolConsultas<T>::agregarEmpleado(Empleado *empleado, string nodoObjetivo)
         NodoConsulta aux = raiz->listaConsulta.buscar(i);
         if (aux.nombre == nodoObjetivo)
         {
-            if (empleado->getTipoIdentificacion() == "Concejo")
+            if (empleado->getTipoIdentificacion() == "Cedula de Ciudadania")
                 raiz->listaConsulta.buscar(i).empleados->Enqueue(empleado, 'I');
             else
                 raiz->listaConsulta.buscar(i).empleados->Enqueue(empleado, 'F');
@@ -96,7 +96,7 @@ NodoConsulta ArbolConsultas<T>::getSucursal(string sucursal)
 {
     for (int i = 0; i < raiz->listaConsulta.getTam(); i++)
     {
-        if (raiz->listaConsulta.buscar(i).nombre == partido)
+        if (raiz->listaConsulta.buscar(i).nombre == sucursal)
         {
             return raiz->listaConsulta.buscar(i);
         }

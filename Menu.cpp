@@ -1,6 +1,7 @@
 #include <stdlib.h>  //Libreria para limpiar pantalla
 #include <iostream>
 #include "LeerEntradas.h"
+#include "OpcionesConsultas.cpp"
 #include <cctype>
 using namespace std;
 
@@ -44,7 +45,7 @@ void Menu::Menus() {
 	cout << "Edwar" <<endl;
 	leerArchivos();
 	cout << ";(" <<endl;
-    //OpcionesConsultas opcionConsultas(ciudades /*sucursales, empleados*/); // Inicializa el objeto de la clase Opciones Consultas
+    OpcionesConsultas opcionConsultas(ciudades, sucursales, empleados); // Inicializa el objeto de la clase Opciones Consultas
     
 
     while (programa) { // Bucle infinito del programa
@@ -105,7 +106,7 @@ void Menu::Menus() {
                         cout << "Elige la sucursal que desees ver los empleados" << endl;
                     	opcionLista.mostrarSucursales(sucursales);
                         Opcion = leerEntrada(0,sucursales->getTam()-1);
-                        opcionLista.empleadosPorSucursal(sucursales->buscar(Opcion).getNombreSucursal(), empleados);
+                        opcionLista.empleadosPorSucursal(sucursales->buscar(Opcion).getNombre(), empleados);
                         break;
                     }/*
 					case 8: {
@@ -139,18 +140,18 @@ void Menu::Menus() {
                         //opcionConsultas.consulta1(ciudad);
                         break;
                     }
-                    /*case 2: {
+                    case 2: {/*
                         string ciudad;
                         ciudad = elegirCiudad();
                         opcionConsultas.consulta2(ciudad);
-                        break;
+                        break;*/
                     }
                     case 3: {
                         string ciudad;
                         ciudad = elegirCiudad();
                         opcionConsultas.consulta3(ciudad);
                         break;
-                    }
+                    }/*
                     case 4: {
                         string ciudad;
                         ciudad = elegirCiudad();
@@ -218,7 +219,7 @@ void Menu::Menus() {
                                 opcionLista.mostrarSucursales(sucursales);
                                 Opcion = leerEntrada(0,sucursales->getTam()-1);
 
-                                string auxNombreSucursal = sucursales->buscar(Opcion).getNombreSucursal();
+                                string auxNombreSucursal = sucursales->buscar(Opcion).getNombre();
 
                                 //Inicializar Partido
                                 Sucursal nuevaSucursal = inicializar.inicializarSucursal(sucursales, ciudades);
@@ -228,7 +229,7 @@ void Menu::Menus() {
                                 for(int i = 0; i < empleados->getTam(); i++)
                                 {
                                     Empleado auxEmpleado = empleados->buscar(i);
-                                    if(auxEmpleado.getSucursal().getNombreSucursal() == auxNombreSucursal)
+                                    if(auxEmpleado.getSucursal().getNombre() == auxNombreSucursal)
                                     {
                                         auxEmpleado.setSucursal(nuevaSucursal);
                                         empleados->modificar(auxEmpleado,i);
@@ -263,7 +264,7 @@ void Menu::Menus() {
                                 opcionLista.mostrarCiudades(ciudades);
                                 ciudad = leerEntrada(0,ciudades->getTam()-1);
 
-                                string auxNombreCiudad = ciudades->buscar(ciudad).getNombreCiudad();
+                                string auxNombreCiudad = ciudades->buscar(ciudad).getNombre();
 
                                 //Creaciï¿½n del Objeto Ciudad
                                 Ciudad NuevaCiudad = inicializar.inicializarCiudad();
@@ -273,12 +274,12 @@ void Menu::Menus() {
                                 for(int i = 0; i < empleados->getTam(); i++)
                                 {
                                     Empleado auxEmpleado = empleados->buscar(i);
-                                    if(auxEmpleado.getCiudadNacimiento().getNombreCiudad() == auxNombreCiudad)
+                                    if(auxEmpleado.getCiudadNacimiento().getNombre() == auxNombreCiudad)
                                     {
                                         auxEmpleado.setCiudadNacimiento(NuevaCiudad);
                                         empleados->modificar(auxEmpleado,i);
                                     }
-                                    if(auxEmpleado.getCiudadResidencia().getNombreCiudad() == auxNombreCiudad)
+                                    if(auxEmpleado.getCiudadResidencia().getNombre() == auxNombreCiudad)
                                     {
                                         auxEmpleado.setCiudadResidencia(NuevaCiudad);
                                         empleados->modificar(auxEmpleado,i);
@@ -306,14 +307,14 @@ void Menu::Menus() {
                                 
                                 for(int i = 0; i < empleados->getTam(); i++){
                                 	Empleado EmpleadoAux = empleados->buscar(i);
-                                    string aux1 = EmpleadoAux.getSucursal().getNombreSucursal();
-                                    string aux2 = sucursalAux.getNombreSucursal();
+                                    string aux1 = EmpleadoAux.getSucursal().getNombre();
+                                    string aux2 = sucursalAux.getNombre();
 
-                                	if(EmpleadoAux.getSucursal().getNombreSucursal() == sucursalAux.getNombreSucursal()){
+                                	if(EmpleadoAux.getSucursal().getNombre() == sucursalAux.getNombre()){
                                 		empleados->borrar(i);
 									}
                                     EmpleadoAux = empleados->buscar(i);
-                                    while(EmpleadoAux.getSucursal().getNombreSucursal() == sucursalAux.getNombreSucursal())
+                                    while(EmpleadoAux.getSucursal().getNombre() == sucursalAux.getNombre())
                                     {
                                         empleados->borrar(i);
                                         EmpleadoAux = empleados->buscar(i);
@@ -336,7 +337,7 @@ void Menu::Menus() {
                             }
                             case 3: { // Eliminar Ciudades
 
-                                cout << "¿Que ciudades deseas Eliminar?" << endl;
+                                cout << "¿Que ciudadad deseas Eliminar?" << endl;
                                 opcionLista.mostrarCiudades(ciudades);
                                 Opcion = leerEntrada(0, ciudades->getTam()-1);
 								
@@ -348,11 +349,11 @@ void Menu::Menus() {
                                 
                                 for(int i = 0; i < empleados->getTam(); i++){
                                 	Empleado EmpleadoAux = empleados->buscar(i);
-                                	if(EmpleadoAux.getCiudadResidencia().getNombreCiudad() == ciudadAux.getNombreCiudad()){
+                                	if(EmpleadoAux.getCiudadResidencia().getNombre() == ciudadAux.getNombre()){
                                 		empleados->borrar(i);
 									}
                                     EmpleadoAux = empleados->buscar(i);
-                                    while(EmpleadoAux.getCiudadResidencia().getNombreCiudad() == ciudadAux.getNombreCiudad())
+                                    while(EmpleadoAux.getCiudadResidencia().getNombre() == ciudadAux.getNombre())
                                     {
                                         empleados->borrar(i);
                                         EmpleadoAux = empleados->buscar(i);
@@ -380,7 +381,7 @@ void Menu::Menus() {
 
                 for (int i = 0; i < sucursales -> getTam(); i++) {
                     Sucursal sucursal = sucursales -> buscar(i); // Declaraciï¿½n del partido de la lista para aï¿½adir su informaciï¿½n al texto plano
-                    textosucursales += sucursal.getNombreSucursal() + "," + sucursal.getCiudadSucursal().getNombreCiudad() + "," + sucursal.getBarrioSucursal()+ 
+                    textosucursales += sucursal.getNombre() + "," + sucursal.getCiudadSucursal().getNombre() + "," + sucursal.getBarrioSucursal()+ 
 										"," + sucursal.getDireccionSucursal() + "," + sucursal.getGerenteSucursal() + "\n";
         		};
                 
@@ -394,7 +395,7 @@ void Menu::Menus() {
 
                 for (int i = 0; i < ciudades -> getTam(); i++) {
                     Ciudad ciudad = ciudades -> buscar(i);
-                    textoCiudades += ciudad.getNombreCiudad() + "," + ciudad.getPais() + "\n";
+                    textoCiudades += ciudad.getNombre() + "," + ciudad.getPais() + "\n";
                 }
 
                 Ciudades.escribir(textoCiudades);
@@ -415,9 +416,9 @@ void Menu::Menus() {
 				    }
 				    textoempleados += empleado.getNombre() + "," + empleado.getApellido() + "," + empleado.getTipoIdentificacion() + "," + empleado.getNumIdentificacion() + "," +
 				                      empleado.getSexo() + "," + empleado.getTelefonoCelular() + "," + empleado.getTelefonoFijo() + "," + empleado.getEmail() + "," + empleado.getFechaNacimiento() + "," +
-				                      empleado.getPaisNacimiento() + "," + empleado.getCiudadNacimiento().getNombreCiudad() + "," + empleado.getCiudadResidencia().getNombreCiudad() + "," +
+				                      empleado.getPaisNacimiento() + "," + empleado.getCiudadNacimiento().getNombre() + "," + empleado.getCiudadResidencia().getNombre() + "," +
 				                      empleado.getDireccionResidencia() + "," + empleado.getBarrioResidencia() + "," + empleado.getActividadLaboral() + "," + empleado.getTieneHijos() + "," +
-				                      to_string(empleado.getNumHijos()) + "," + textoHijos + "," + empleado.getSucursal().getNombreSucursal() + "\n";
+				                      to_string(empleado.getNumHijos()) + "," + textoHijos + "," + empleado.getSucursal().getNombre() + "\n";
 				}
 				Empleados.escribir(textoempleados);
 				
@@ -502,7 +503,7 @@ string Menu::elegirCiudad()
     cout << "Escriba el número de la ciudad que desea elegir: " << endl;
     opcionLista.mostrarCiudades(ciudades);
     pos = leerEntrada(0,ciudades->getTam()-1);
-    return ciudades->buscar(pos).getNombreCiudad();
+    return ciudades->buscar(pos).getNombre();
 }
 
 

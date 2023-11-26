@@ -6,23 +6,23 @@ using namespace std;
 
 class Ciudad {
 private:
-    string nombreCiudad;
+    string nombre;
     string pais;
 
 public:
     Ciudad() {
-        nombreCiudad = "";
+        nombre = "";
         pais = "";
     }
 
-    Ciudad(string nombreCiudad, string pais) {
-        this->nombreCiudad = nombreCiudad;
+    Ciudad(string nombre, string pais) {
+        this->nombre = nombre;
         this->pais = pais;
     }
 
     // Getters
-    string getNombreCiudad() {
-        return nombreCiudad;
+    string getNombre() {
+        return nombre;
     }
     
     string getPais() {
@@ -30,8 +30,8 @@ public:
     }
     
     // Setters
-    void setNombreCiudad(string nombreCiudad) {
-        Ciudad::nombreCiudad = nombreCiudad;
+    void setNombre(string nombre) {
+        Ciudad::nombre = nombre;
     }
     
     void setPais(string pais) {
