@@ -39,7 +39,7 @@ public:
         empleados = Empleados.leerEmpleados();
     }
 };
-
+////cambio
 void Menu::Menus() {
     bool programa = true;
 	cout << "Edwar" <<endl;
