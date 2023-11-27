@@ -16,7 +16,7 @@ private:
 	OpcionesListas opcionLista;
 public:
     int Opcion;
-
+	string ciudadElegida;
     void MostrarMenu();
     void SubMenuListas();
     void SubMenuConsultas();
@@ -24,7 +24,7 @@ public:
     void SubMenuEdad();
     void SubMenuInsercion();
     void EleccionSubMenuInsercion();
-    string elegirSucursal();
+    string elegirSucursal(string ciudadElegida);
     string elegirCiudad();
 
     void Menus();
@@ -135,10 +135,11 @@ void Menu::Menus() {
                 Opcion = leerEntrada(1,7);
                 switch (Opcion) {
                     case 1: {
-                        string ciudad;
-                        ciudad = elegirCiudad();
-                        //opcionConsultas.consulta1(ciudad);
-                        break;
+                        string ciudad, nombreSucursal;
+                    	ciudad = elegirCiudad();
+                    	nombreSucursal = elegirSucursal(ciudad);
+			            opcionConsultas.consulta1(ciudad, nombreSucursal);
+			            break;
                     }
                     case 2: {/*
                         string ciudad;
@@ -500,10 +501,38 @@ string Menu::elegirPartido()
 string Menu::elegirCiudad()
 {
     int pos = 0;
-    cout << "Escriba el número de la ciudad que desea elegir: " << endl;
+    cout << "Escriba el n?mero de la ciudad que desea elegir: " << endl;
     opcionLista.mostrarCiudades(ciudades);
     pos = leerEntrada(0,ciudades->getTam()-1);
     return ciudades->buscar(pos).getNombre();
 }
 
+string Menu::elegirSucursal(string ciudadElegida)
+{
+	int opc;
+    string sol;
+
+    // Mostrar las sucursales disponibles en la ciudad
+    for (int i = 0; i < sucursales->getTam(); i++) {
+        Sucursal sucursal = sucursales->buscar(i);
+        if (sucursal.getCiudadSucursal().getNombre() == ciudadElegida) {
+            cout << i << ". " << sucursal.getNombre() << endl;
+        }
+    }
+
+    // Solicitar al usuario que elija una sucursal
+    cout << "Seleccione una sucursal: ";
+    cin >> opc;
+
+    // Verificar que la opci?n sea v?lida
+    if (opc >= 0 && opc < sucursales->getTam()) {
+        // Obtener el nombre de la sucursal seleccionada y asignarlo a la variable sol
+        sol = sucursales->buscar(opc).getNombre();
+    } else {
+        // Opci?n inv?lida, manejar seg?n sea necesario
+        cout << "Opci?n inv?lida." << endl;
+    }
+
+    return sol;
+}
 

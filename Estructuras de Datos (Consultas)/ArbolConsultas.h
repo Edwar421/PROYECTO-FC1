@@ -46,6 +46,22 @@ public:
     void agregarNodoConsulta(T objeto);
     void agregarEmpleado(Empleado *empleado, string nodoObjetivo);
     NodoConsulta getSucursal(string sucursal);
+    NodoConsulta buscar(string nombreSucursal)
+    {
+        for (int i = 0; i < raiz->listaConsulta.getTam(); i++)
+        {
+            if (raiz->listaConsulta.buscar(i).nombre == nombreSucursal)
+            {
+                return raiz->listaConsulta.buscar(i);
+            }
+        }
+        // Si no se encuentra, podr?as devolver un valor predeterminado o lanzar una excepci?n seg?n tus necesidades.
+        // Aqu? estoy devolviendo un nodo con una cola de empleados vac?a.
+        NodoConsulta nodoNoEncontrado;
+        nodoNoEncontrado.nombre = "No encontrado";
+        nodoNoEncontrado.empleados = new Queue<Empleado>;
+        return nodoNoEncontrado;
+    }
 };
 
 template <class T>

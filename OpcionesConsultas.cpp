@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <sstream>
+#include <map>
 
 #include "Estructuras de Datos (Consultas)/ArbolConsultas.h"
 
@@ -22,11 +24,13 @@ public:
 
     // Funcion que calcula la edad
     int calcularEdad(Empleado *auxEmpleado);
+    int calcularEdadHijo(string fechaNacimientoHijo);
+    string obtenerRangoEdades(int edad);
     void actualizar(Lista<Ciudad> *ciudades, Lista<Sucursal> *sucursales, Lista<Empleado> *empleados);
     void agregarDatosArbolCiudades(Lista<Ciudad> *ciudades, Lista<Sucursal> *sucursales, Lista<Empleado> *empleados);
     void agregarDatosArbolSucursales(Lista<Ciudad> *ciudades, Lista<Sucursal> *sucursales, Lista<Empleado> *empleados);
 
-    void consulta1(string partido, string ciudad);
+    void consulta1(string ciudad, string nombreSucursal);
     void consulta2(string partido);
     void consulta3(string ciudad);
     void consulta4(string ciudad);
@@ -128,6 +132,22 @@ void OpcionesConsultas::agregarDatosArbolSucursales(Lista<Ciudad> *ciudades, Lis
     }
 }
 
+string OpcionesConsultas::obtenerRangoEdades(int edad) {
+    if (edad >= 0 && edad <= 5) {
+        return "0-5";
+    } else if (edad >= 6 && edad <= 12) {
+        return "6-12";
+    } else if (edad >= 13 && edad <= 18) {
+        return "13-18";
+    } else if (edad >= 19 && edad <= 30) {
+        return "19-30";
+    } else if (edad >= 31 && edad <= 50) {
+        return "31-50";
+    } else {
+        return "M?s de 50";
+    }
+}
+
 int OpcionesConsultas::calcularEdad(Empleado *auxEmpleado)
 {
     if(auxEmpleado->getFechaNacimiento().length() != 10)
@@ -142,65 +162,115 @@ int OpcionesConsultas::calcularEdad(Empleado *auxEmpleado)
     tm *fechaActual = localtime(&tiempoActual);
 
     int diaActual = fechaActual->tm_mday;
-    int mesActual = fechaActual->tm_mon + 1;      // tm_mon estÃ¡ basado en 0
-    int anioActual = fechaActual->tm_year + 1900; // tm_year cuenta los aÃ±os desde 1900
+    int mesActual = fechaActual->tm_mon + 1;      // tm_mon está basado en 0
+    int anioActual = fechaActual->tm_year + 1900; // tm_year cuenta los años desde 1900
 
     // Calcular la edad
     int edad = anioActual - anioNacimiento;
     if (mesActual < mesNacimiento || (mesActual == mesNacimiento && diaActual < diaNacimiento))
     {
-        // No se ha cumplido el cumpleaÃ±os este aÃ±o
+        // No se ha cumplido el cumpleaños este año
         edad--;
     }
 
     return edad;
 }
-/*
-// Cosulta 1. Dado un partido y una ciudad, mostrar la lista de sus candidatos al Concejo y el candidato a la alcaldÃ­a (nombre, edad, sexo).
-void OpcionesConsultas::consulta1(string partido, string ciudad)
+
+int OpcionesConsultas::calcularEdadHijo(string fechaNacimientoHijo)
 {
-    NodoArbol<string, ArbolConsultas<Partido>> *nodoAux = arbolCiudades->buscar(ciudad);
-
-    int cAldalde = 0; // esto es para saber si se imprimiÃ³ un alcalde, se usa en el for de abajo
-
-    Queue<Candidato> *auxPartido = nodoAux->data->getPartido(partido).candidatos; // cola de candidatos
-
-    if (auxPartido->getTam() > 0)
+    if (fechaNacimientoHijo.length() != 10)
+        return 0;
+    // Se calcula la edad partiendo en subcadena con las posiciones necesarias para obtener d?a, mes, a?o
+    stringstream ss(fechaNacimientoHijo);
+    string diaStr, mesStr, anioStr;
+    getline(ss, diaStr, '/');
+    getline(ss, mesStr, '/');
+    getline(ss, anioStr, '/');
+    int diaNacimiento = stoi(diaStr);
+    int mesNacimiento = stoi(mesStr);
+    int anioNacimiento = stoi(anioStr);
+    // Obtener la fecha actual
+    time_t tiempoActual = time(nullptr);
+    tm *fechaActual = localtime(&tiempoActual);
+    int diaActual = fechaActual->tm_mday;
+    int mesActual = fechaActual->tm_mon + 1;      // tm_mon est? basado en 0
+    int anioActual = fechaActual->tm_year + 1900; // tm_year cuenta los a?os desde 1900
+    // Calcular la edad
+    int edad = anioActual - anioNacimiento;
+    if (mesActual < mesNacimiento || (mesActual == mesNacimiento && diaActual < diaNacimiento))
     {
-        Candidato *auxCandidato = auxPartido->retornarElemento(0, 'I');
-
-        string auxz = auxCandidato->getPuesto();
-        if (auxz == "Alcaldia")
-        {
-            cAldalde++;
-            int edad = calcularEdad(auxCandidato);
-            cout << "Candidato alcaldia:" << endl;
-            cout << auxCandidato->getNombre() << " edad: " << edad << " sexo: " << auxCandidato->getSexo() << " - " << auxCandidato->getNumIdentificacion() << endl;
-        }
-
-        if (auxPartido->getTam() > 1)
-        {
-            cout << "Candidatos concejo:" << endl;
-
-            for (int j = 0 + cAldalde; j < auxPartido->getTam(); j++)
-            {
-                auxCandidato = auxPartido->retornarElemento(j, 'I');
-
-                int edad = calcularEdad(auxCandidato);
-
-                cout << auxCandidato->getNombre() << " edad: " << edad << " sexo: " << auxCandidato->getSexo() << " - " << auxCandidato->getNumIdentificacion() << endl;
-            }
-        }
+        // No se ha cumplido el cumplea?os este a?o
+        edad--;
     }
-    else
-    {
-        cout << "No se encontraron candidatos para la ciudad: " << ciudad << ", y partido: " << partido << endl;
-    }
-    system("pause");
-    return;
+    return edad;
 }
+	
+	// Cosulta 1. Dado un partido y una ciudad, mostrar la lista de sus candidatos al Concejo y el candidato a la alcaldía (nombre, edad, sexo).
+	void OpcionesConsultas::consulta1(string ciudad, string nombreSucursal)
+	{
+	    cout << endl << "Consulta 1 - Personas por rangos de edades en la sucursal " << nombreSucursal << " en la ciudad " << ciudad << endl;
+	    NodoArbol<string, ArbolConsultas<Sucursal>> *nodoCiudad = arbolCiudades->buscar(ciudad);
+	    if (nodoCiudad != nullptr)
+	    {
+	        NodoConsulta nodoSucursal = nodoCiudad->data->buscar(nombreSucursal);
+	        if (nodoSucursal.nombre == nombreSucursal)
+	        {
+	            Queue<Empleado> *empleados = nodoSucursal.empleados;
+	            if (empleados->getTam() > 0)
+	            {
+	                // Mapa para contabilizar personas por rangos de edades
+	                map<string, int> personasPorRango;
+	                for (int i = 0; i < empleados->getTam(); i++)
+	                {
+	                    Empleado *empleado = empleados->retornarElemento(i, 'I');
+	                    // Clasificar por rangos de edades de los hijos
+	                    bool sinHijos = true; // Nuevo: bandera para verificar si el empleado no tiene hijos
+	                    for (const Hijo &hijo : empleado->getHijos())
+	                    {
+	                    	int prueba = calcularEdadHijo("15/01/2003");
+	                    	cout << prueba <<endl;
+	                    	string fecha = hijo.getFechaNacimiento();
+	                    	cout << fecha << endl;
+	                        int edadHijo = calcularEdadHijo(hijo.getFechaNacimiento());
+	                        cout << edadHijo << endl;
+	                        string rangoEdades = obtenerRangoEdades(edadHijo);
+	                        cout << rangoEdades <<endl;
+	                        // Incrementar el contador en el mapa
+	                        personasPorRango[rangoEdades]++;
+	                        sinHijos = false; // Nuevo: el empleado tiene al menos un hijo
+	                    }
+	                    // Si el empleado no tiene hijos, incrementar el contador correspondiente
+	                    if (sinHijos)
+	                    {
+	                        personasPorRango["Sin hijos"]++;
+	                    }
+	                }
+	                // Mostrar los resultados
+	                for (const auto &pair : personasPorRango)
+	                {
+	                    cout << "Personas con hijos " << pair.first << ": " << pair.second << endl;
+	                }
+	            }
+	            else
+	            {
+	                cout << "No se encontraron personas en la sucursal " << nombreSucursal << endl;
+	            }
+	        }
+	        else
+	        {
+	            cout << "No se encontr? la sucursal " << nombreSucursal << " en la ciudad " << ciudad << endl;
+	        }
+	    }
+	    else
+	    {
+	        cout << "No se encontr? la ciudad " << ciudad << endl;
+	    }
+	    system("pause");
+	    return;
+	}
 
 // Consulta 2. Dado un partido mostrar la lista de candidatos a alcaldÃ­as de cada una de las diferentes ciudades (ciudad, nombre del candidato, sexo, edad).
+/*
 void OpcionesConsultas::consulta2(string partido)
 {
     cout << endl

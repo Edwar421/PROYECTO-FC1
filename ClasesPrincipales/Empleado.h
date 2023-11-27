@@ -21,7 +21,7 @@ public:
         return nombre;
     }
 
-    string getFechaNacimiento(){
+    string getFechaNacimiento() const{
         return fechaNacimiento;
     }
 };
