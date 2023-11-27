@@ -325,8 +325,7 @@ void OpcionesConsultas::consulta2(int seleccionRangoHijos) {
                     (seleccionRangoHijos == 3 && numHijos >= 3 && numHijos <= 4) ||
                     (seleccionRangoHijos == 4 && numHijos > 4)) {
                     // Obtener información adicional del empleado
-                    string barrio = auxEmpleado->getBarrioResidencia();
-                    string pais = auxEmpleado->getCiudadResidencia().getNombre();
+                    string pais = auxEmpleado->getPaisNacimiento();
 
                     // Mostrar la información
                     cout << "País: " << pais << ", Ciudad: " << nombreCiudad << ", Sucursal: " << nombreSucursal << endl;
@@ -435,7 +434,7 @@ void OpcionesConsultas::consulta5(Lista<Ciudad> ciudades) {
             NodoConsulta nodoSucursal = nodosSucursales.buscar(j);
 
             // Obtener la lista de empleados de la sucursal actual
-            Lista<Empleado> *empleados = nodoSucursal.empleados;
+            Queue<Empleado> *empleados = nodoSucursal.empleados;
 
             // Contadores para hombres y mujeres
             int hombres = 0;

@@ -446,9 +446,8 @@ void Menu::Menus() {
 }
 
 void Menu::MostrarMenu() {
-    cout << "Empresa X" << endl;
-    cout << "Menu Principal" << endl;
-    cout << "--------------------------------------------------" << endl;
+    cout << "MENÚ PRINCIPAL" << endl;
+    cout << "----------------------------------" << endl;
     cout << "1. Buscar listas por categoria" << endl;
     cout << "2. Realizar consultas" << endl;
     cout << "3. Insertar, Modificar y Eliminar" << endl;
@@ -456,7 +455,9 @@ void Menu::MostrarMenu() {
 }
 
 void Menu::SubMenuListas() {
-    cout << "Buscar Listas por categoria" << endl;
+    cout << "1. Buscar Listas por categoria\n" << endl;
+    cout << "SUBMENÚ LISTAS" << endl;
+    cout << "--------------------------------------" << endl;
     cout << "1. Ciudades." << endl;
     cout << "2. Sucursales" << endl;
     cout << "3. Todos los empleados de la empresa." << endl;
@@ -468,7 +469,9 @@ void Menu::SubMenuListas() {
 }
 
 void Menu::SubMenuConsultas() {
-    cout << "Realizar una consulta" << endl;
+    cout << "2. Realizar una consulta \n" << endl;
+    cout << "SUBMENÚ CONSULTAS" << endl;
+    cout << "--------------------------------------" << endl;
     cout << "1. Número total de personas que trabajan en una sucursal dada." << endl;
     cout << "2. Listado de los nombres y apellidos de aquellos que tienen  un número de hijos dado." << endl;
     cout << "3. Nombre y apellidos de las personas que viven en una ciudad dada." << endl;
@@ -478,6 +481,8 @@ void Menu::SubMenuConsultas() {
 }
 
 void Menu::SubMenuNumeroDeHijos() {
+	cout << "SUBMENÚ NÚMERO DE HIJOS" << endl;
+    cout << "--------------------------------------" << endl;
     cout << "1. Sin Hijos" << endl;
     cout << "2. 1-2 hijos" << endl;
     cout << "3. 3-4 hijos" << endl;
@@ -485,6 +490,8 @@ void Menu::SubMenuNumeroDeHijos() {
 }
 
 void Menu::SubMenuEdad() {
+	cout << "SUBMENÚ RANGOS DE EDAD" << endl;
+    cout << "--------------------------------------" << endl;
     cout << "1. 18 - 24 años" << endl;
     cout << "2. 25 - 35 años" << endl;
     cout << "3. 36 - 45 años" << endl;
@@ -493,12 +500,16 @@ void Menu::SubMenuEdad() {
 }
 
 void Menu::SubMenuInsercion() {
+	cout << "INSERCIÓN, MODIFICACIÓN, ELIMINACIÓN" << endl;
+    cout << "--------------------------------------" << endl;
     cout << "1. Insertar" << endl;
     cout << "2. Modificar" << endl;
     cout << "3. Eliminar" << endl;
 }
 
 void Menu::EleccionSubMenuInsercion() {
+	cout << "EN CUAL DESEA HACER LA MODIFICACIÓN?" << endl;
+    cout << "--------------------------------------" << endl;
     cout << "1. Sucursal" << endl;
     cout << "2. Empleado" << endl;
     cout << "3. Ciudad" << endl;
@@ -507,6 +518,8 @@ void Menu::EleccionSubMenuInsercion() {
 string Menu::elegirCiudad()
 {
     int pos = 0;
+    cout << "CIUDAD" << endl;
+    cout << "--------------------------------------" << endl;
     cout << "Escriba el n?mero de la ciudad que desea elegir: " << endl;
     opcionLista.mostrarCiudades(ciudades);
     pos = leerEntrada(0,ciudades->getTam()-1);
@@ -516,6 +529,8 @@ string Menu::elegirCiudad()
 string Menu::elegirActividadLab()
 {
     int pos = 0;
+    cout << "ACTIVIDAD LABORAL" << endl;
+    cout << "--------------------------------------" << endl;
     cout << "Escriba el n?mero de la actividad laboral que desea elegir: " << endl;
     opcionLista.mostrarActividadesLaborales(empleados);
     pos = leerEntrada(0,empleados->getTam()-1);
@@ -526,7 +541,8 @@ string Menu::elegirSucursal(string ciudadElegida)
 {
 	int opc;
     string sol;
-
+	cout << "SUCURSAL" << endl;
+    cout << "--------------------------------------" << endl;
     // Mostrar las sucursales disponibles en la ciudad
     for (int i = 0; i < sucursales->getTam(); i++) {
         Sucursal sucursal = sucursales->buscar(i);
