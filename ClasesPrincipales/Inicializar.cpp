@@ -2,21 +2,24 @@
 
 #include "../OpcionesListas.cpp"
 
-//#include "../OpcionesConsultas.cpp"
-
 #include <string>
 using namespace std;
 
 class Inicializar {
 private: OpcionesListas opcionLista;
 public:
+	
     //Metodos para inicializar las sucursales , ciudades y los empleados
+    
     //Con el fin de obtener los datos a la hora de insertar o modificar sin necesidad de repetir codigo
+    
+    //Declaración las funciones que se van a utilizar
     Sucursal inicializarSucursal(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades);
     Ciudad inicializarCiudad();
     Empleado inicializarEmpleado(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades, Lista < Empleado > * empleados);
 };
 
+//1. Primer método: Inicializar sucursal
 Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades) {
     //Insertar Sucursal
 	string nombreSucursal;
@@ -25,6 +28,7 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista
     string direccionSucursal;
     string gerenteSucursal;
     
+    //para elegir la ciudad de las ya existentes
 	int opcionCiudadSucursal;
     bool SucursalValido = false;
     int i = 0;
@@ -34,6 +38,7 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista
 	    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	    getline(cin, nombreSucursal);
 	    
+	    //elegir ciudad
 	    cout << "De las siguientes ciudades, ¿Cual de ella se encuentra la sucursal?" << endl;
         opcionLista.mostrarCiudades(ciudades);
         opcionCiudadSucursal = leerEntrada(0,ciudades->getTam()-1);
@@ -51,7 +56,7 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista
         for (i = 0; i < sucursales -> getTam(); i++) {
             Sucursal SucursalAuxiliar = sucursales -> buscar(i);
             if (SucursalAuxiliar.getNombre() == nombreSucursal || SucursalAuxiliar.getGerenteSucursal() == gerenteSucursal) {
-                cout << "El Nombre del Sucursal ya existe o ya hay un representante legal en un Sucursal" << endl;
+                cout << "El Nombre de la Sucursal ya existe o ya hay un gerente en otra Sucursal" << endl;
                 break;
             }
         }
@@ -69,6 +74,7 @@ Sucursal Inicializar::inicializarSucursal(Lista < Sucursal > * sucursales, Lista
     return Sucursal;
 }
 
+//2.Inicializar ciudad
 Ciudad Inicializar::inicializarCiudad() {
     //Se ingresan los datos de la nueva ciudad (Se necesita validaciï¿½n cuando la ciudad ya existe)
     string nombreCiudad, nombreBarrio, direccion, pais;
@@ -84,6 +90,7 @@ Ciudad Inicializar::inicializarCiudad() {
     return ciudad;
 }
 
+//3. Inicializar empleado
 Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista < Ciudad > * ciudades, Lista < Empleado > * empleados) {
     // Insertar Empleado (Se necesita validaciï¿½n de puesto, fecha nacimiento, estado civil)
 
@@ -91,8 +98,6 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
     string nombre, apellido, tipoIdentificacion, numIdentificacion, telefonoCelular, telefonoFijo, email, fechaNacimiento, paisNacimiento, direccionResidencia, 
 			barrioResidencia, actividadLaboral, sucursal;
     char sexo;
-    
-
     bool EmpleadoValido = false;
     int i = 0;
 
@@ -209,19 +214,17 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
     }
 
     //Creacion del objeto Empleado para aï¿½adirlo en la lista
+    //Opciones
     Sucursal sucursalBuscada = sucursales -> buscar(OpcionSucursal);
-    
-
     Ciudad ciudadNacimiento = ciudades -> buscar(OpcionNacimiento);
     Ciudad ciudadResidencia = ciudades -> buscar(OpcionResidencia);
     Sucursal sucursalCopia(sucursalBuscada);
 
     Empleado empleado(nombre, apellido, tipoIdentificacion, numIdentificacion, sexo, telefonoCelular,
         telefonoFijo, email, fechaNacimiento, paisNacimiento, ciudadNacimiento, ciudadResidencia, direccionResidencia,
-        barrioResidencia, actividadLaboral, tieneHijos, numHijos,  sucursalCopia);//Arreglar
+        barrioResidencia, actividadLaboral, tieneHijos, numHijos,  sucursalCopia);
 
     // Solicitar información sobre los hijos
-    
         cin.ignore(); // Limpiar el buffer antes de la entrada de cadena
 
         for (int i = 0; i < numHijos; ++i) {
@@ -245,7 +248,5 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
             Hijo hijo(nombreHijo, fechaNacimientoHijo);
             empleado.agregarHijo(hijo);
         }
-    
-
     return empleado;
 }

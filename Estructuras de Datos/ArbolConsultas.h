@@ -8,6 +8,7 @@
 #include "Queue.h"
 
 #include "../ClasesPrincipales/Empleado.h"
+#include "../ClasesPrincipales/Sucursal.h"
 
 using namespace std;
 

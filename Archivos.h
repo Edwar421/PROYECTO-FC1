@@ -115,7 +115,7 @@ public: Archivos(string nombre) {
 	    return ciudades;
 	}
 	
-    //Del archivo Partidos, lee los partidos, crea los objetos de los partidos, los a�ade a la lista y retorna la lista
+    //Del archivo Sucursales, lee los sucursales, crea los objetos de las sucursales, los a�ade a la lista y retorna la lista
     Lista < Sucursal > * leerSucursales() {
         sucursales = new Lista < Sucursal > ();
 

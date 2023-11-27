@@ -26,6 +26,7 @@ public:
     void EleccionSubMenuInsercion();
     string elegirSucursal(string ciudadElegida);
     string elegirCiudad();
+    string elegirActividadLab();
 
     void Menus();
 
@@ -42,16 +43,12 @@ public:
 ////cambio
 void Menu::Menus() {
     bool programa = true;
-	cout << "Edwar" <<endl;
 	leerArchivos();
-	cout << ";(" <<endl;
     OpcionesConsultas opcionConsultas(ciudades, sucursales, empleados); // Inicializa el objeto de la clase Opciones Consultas
     
 
     while (programa) { // Bucle infinito del programa
-        system("cls");
-        cout << "chimba" << endl;
-        
+        system("cls");        
         MostrarMenu();
         Opcion = leerEntrada(1,4);
 
@@ -108,7 +105,7 @@ void Menu::Menus() {
                         Opcion = leerEntrada(0,sucursales->getTam()-1);
                         opcionLista.empleadosPorSucursal(sucursales->buscar(Opcion).getNombre(), empleados);
                         break;
-                    }/*
+                    }
 					case 8: {
                         SubMenuEdad();
                     	int seleccion = leerEntrada(1,5);
@@ -125,7 +122,7 @@ void Menu::Menus() {
 					    }
 
                         break;
-                    }*/
+                    }
                 }
                 break;
             }
@@ -141,11 +138,11 @@ void Menu::Menus() {
 			            opcionConsultas.consulta1(ciudad, nombreSucursal);
 			            break;
                     }
-                    case 2: {/*
-                        string ciudad;
-                        ciudad = elegirCiudad();
-                        opcionConsultas.consulta2(ciudad);
-                        break;*/
+                    case 2: {
+                        SubMenuNumeroDeHijos();
+                    	int seleccion = leerEntrada(1,4);
+                    	opcionConsultas.consulta2(seleccion);
+                        break;
                     }
                     case 3: {
                         string ciudad;
@@ -153,17 +150,33 @@ void Menu::Menus() {
                         opcionConsultas.consulta3(ciudad);
                         break;
                     }
-                    case 4: {/*
-                        string ciudad;
-                        ciudad = elegirCiudad();
-                        opcionConsultas.consulta4(ciudad);
-                        break;*/
+                    case 4: {
+                        int numPersonas;
+                        cout<<"Ingresa el número mínimo de personas que solicitas: ";
+                        cin>>numPersonas;
+                        if(numPersonas > 0){
+                        	opcionConsultas.consulta4(numPersonas);
+						}else{
+							cout<<"Número inválido";
+						}
+                        break;
                     }
                     case 5: {
                         opcionConsultas.consulta5(*ciudades);
                         break;
                     }
                     case 6: {
+                    	int edadMin, edadMax;
+                        cout<<"Ingresa la edad mínima que solicitas: ";
+                        cin>>edadMin;
+                        cout<<"\nIngresa la edad máxima que solicitas: ";
+                        cin>>edadMax;
+                        string actividadLaboral = elegirActividadLab();
+                        if(edadMin > 0 && edadMax > 0){
+                        	opcionConsultas.consulta6(edadMin, edadMax, actividadLaboral);
+						}else{
+							cout<<"Número inválido";
+						}
                         opcionConsultas.consulta6(25, 45, "Abogada");
                         break;
                     }
@@ -210,11 +223,12 @@ void Menu::Menus() {
                         break;
                     }
                     case 2: { //Opciones para Modificar
+                    //Uso de auxiliares para guardar datos y no perder la información
                         EleccionSubMenuInsercion();
                         Opcion = leerEntrada(1,3);
                         switch (Opcion) {
                             case 1: {
-                                //Encontrar el partido a modificar
+                                //Encontrar el sucursal a modificar
                                 string NombreSucursal;
                                 cout << "¿Que sucursal deseas modificar?" << endl;
                                 opcionLista.mostrarSucursales(sucursales);
@@ -222,7 +236,7 @@ void Menu::Menus() {
 
                                 string auxNombreSucursal = sucursales->buscar(Opcion).getNombre();
 
-                                //Inicializar Partido
+                                //Inicializar Sucursal
                                 Sucursal nuevaSucursal = inicializar.inicializarSucursal(sucursales, ciudades);
 
                                 sucursales -> modificar(nuevaSucursal, Opcion);
@@ -258,7 +272,7 @@ void Menu::Menus() {
                             }
                             case 3: { //Modificar Ciudad
 
-                                //Enconntrar la ciudad a modificar (Se necesita validaciï¿½n cuando la ciudad ya existe)
+                                //Encontrar la ciudad a modificar (Se necesita validaciï¿½n cuando la ciudad ya existe)
                                 string nombre;
                                 int ciudad;
                                 cout << "Selecciona la ciudad que desea modificar" << endl;
@@ -296,14 +310,15 @@ void Menu::Menus() {
                         EleccionSubMenuInsercion();
                         Opcion = leerEntrada(1,3);
                         switch (Opcion) {
-                            case 1: { //Eliminar Partido
+                            case 1: { //Eliminar Sucursal
                                 int Eleccion;
                                 cout << "ï¿Que sucursal deseas Eliminar?" << endl;
                                 opcionLista.mostrarSucursales(sucursales);
                                 Eleccion = leerEntrada(0,sucursales->getTam()-1);
-                                //Guardar un partido auxiliar para eliminar los empleados con ese partido
+                                //Guardar una sucursal auxiliar para eliminar los empleados con esa sucursal
 								Sucursal sucursalAux = sucursales->buscar(Eleccion);
 								
+								//Se eliminan a todos los empleados que se pertenecian a esa sucursal
                                 sucursales -> borrar(Eleccion);
                                 
                                 for(int i = 0; i < empleados->getTam(); i++){
@@ -338,7 +353,7 @@ void Menu::Menus() {
                             }
                             case 3: { // Eliminar Ciudades
 
-                                cout << "¿Que ciudadad deseas Eliminar?" << endl;
+                                cout << "¿Que ciudad deseas Eliminar?" << endl;
                                 opcionLista.mostrarCiudades(ciudades);
                                 Opcion = leerEntrada(0, ciudades->getTam()-1);
 								
@@ -369,7 +384,7 @@ void Menu::Menus() {
                     }
                 }
                 Opcion = 0;
-                //opcionConsultas.actualizar(ciudades, sucursales, empleados);
+                opcionConsultas.actualizar(ciudades, sucursales, empleados);
                 break;
             }
             case 4: {
@@ -381,7 +396,7 @@ void Menu::Menus() {
                 string textosucursales;
 
                 for (int i = 0; i < sucursales -> getTam(); i++) {
-                    Sucursal sucursal = sucursales -> buscar(i); // Declaraciï¿½n del partido de la lista para aï¿½adir su informaciï¿½n al texto plano
+                    Sucursal sucursal = sucursales -> buscar(i); // Declaraciï¿½n de la sucursal de la lista para aï¿½adir su informaciï¿½n al texto plano
                     textosucursales += sucursal.getNombre() + "," + sucursal.getCiudadSucursal().getNombre() + "," + sucursal.getBarrioSucursal()+ 
 										"," + sucursal.getDireccionSucursal() + "," + sucursal.getGerenteSucursal() + "\n";
         		};
@@ -488,16 +503,7 @@ void Menu::EleccionSubMenuInsercion() {
     cout << "2. Empleado" << endl;
     cout << "3. Ciudad" << endl;
 }
-/*
-string Menu::elegirPartido()
-{
-    int pos = 0;
-    cout << "Escriba el número de sucursal que desea elegir: " << endl;
-    opcionLista.mostrarsucursales(sucursales);
-    pos = leerEntrada(0,sucursales->getTam()-1);
-    return sucursales->buscar(pos).getNombre();
-}
-*/
+
 string Menu::elegirCiudad()
 {
     int pos = 0;
@@ -505,6 +511,15 @@ string Menu::elegirCiudad()
     opcionLista.mostrarCiudades(ciudades);
     pos = leerEntrada(0,ciudades->getTam()-1);
     return ciudades->buscar(pos).getNombre();
+}
+
+string Menu::elegirActividadLab()
+{
+    int pos = 0;
+    cout << "Escriba el n?mero de la actividad laboral que desea elegir: " << endl;
+    opcionLista.mostrarActividadesLaborales(empleados);
+    pos = leerEntrada(0,empleados->getTam()-1);
+    return empleados->buscar(pos).getNombre();
 }
 
 string Menu::elegirSucursal(string ciudadElegida)

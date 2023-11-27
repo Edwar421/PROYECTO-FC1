@@ -1,5 +1,5 @@
 #include <string>
-//#include <ctime>
+#include <ctime>
 
 class OpcionesListas {
 private:
@@ -54,13 +54,14 @@ public:
 	        }
 	    }
 	
-	    // Utiliza una pila para mostrar los empleados en orden inverso
+	    /*// Utiliza una pila para mostrar los empleados en orden inverso
 	    while (!empleadosGenero.lista_vacia()) {
 	        Empleado empleado = empleadosGenero.buscar(empleadosGenero.getTam() - 1);
 	        cout << "Invertido: " << empleado.getNombre() << " " << empleado.getNumIdentificacion() << endl;
 	        empleadosGenero.borrar(empleadosGenero.getTam() - 1);
 	    }
-	
+		*/
+		
 	    cout << "Cantidad de empleados: " << cantidad << endl;
 	
 	    system("Pause");
@@ -102,7 +103,7 @@ public:
 	        for (int j = 0; j < empleados->getTam(); j++) {
 	            Empleado empleado = empleados->buscar(j);
 	            if (empleado.getActividadLaboral() == actividadSeleccionada) {
-	                cout << "   - " << empleado.getNombre() << endl;
+	                cout << "   - " << empleado.getNombreCompleto() << endl;
 	            }
 	        }
 	    } else {
@@ -121,7 +122,7 @@ public:
 		    for (int i = 0; i < empleados->getTam(); i++) {
 		        Empleado empleado = empleados->buscar(i);
 		        if (empleado.getNumHijos() == 0) {
-		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cout << empleado.getNombreCompleto()<< ", Numero de hijos: " << empleado.getNumHijos() << endl;
 		            cantidad++;
 		        }
 		    }
@@ -131,7 +132,7 @@ public:
 		        Empleado empleado = empleados->buscar(i);
 		        int numHijos = empleado.getNumHijos();
 		        if (numHijos >= 1 && numHijos <= 2) {
-		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cout << empleado.getNombreCompleto()<< ", Numero de hijos: " << empleado.getNumHijos() << endl;
 		            cantidad++;
 		        }
 		    }
@@ -141,7 +142,7 @@ public:
 		        Empleado empleado = empleados->buscar(i);
 		        int numHijos = empleado.getNumHijos();
 		        if (numHijos >= 3 && numHijos <= 4) {
-		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cout << empleado.getNombreCompleto()<< ", Numero de hijos: " << empleado.getNumHijos() << endl;
 		            cantidad++;
 		        }
 		    }
@@ -151,7 +152,7 @@ public:
 		        Empleado empleado = empleados->buscar(i);
 		        int numHijos = empleado.getNumHijos();
 		        if (numHijos > 4) {
-		            cout << empleado.getNombre() << " " << empleado.getApellido() << " " << empleado.getNumIdentificacion() << endl;
+		            cout << empleado.getNombreCompleto()<< ", Numero de hijos: " << empleado.getNumHijos() << endl;
 		            cantidad++;
 		        }
 		    }
@@ -180,7 +181,7 @@ public:
 
         system("Pause"); // Pausa el programa y espera a que se presione una tecla
     }
-    /*
+
     //8. Lista por edad (18 a 24, 25 a 35, 36 a 45, 45 a 60, más de 60) y por sexo.
 	//Primero debemos crear una funcion que nos permita calcular la edad de los empleados
 	int calcularEdad(Empleado *auxPersona){
@@ -296,6 +297,4 @@ void mostrarEdadYSexo(int seleccion, char sexo, Lista<Empleado> *empleados) {
 		}
 	    system("Pause"); // Pausa el programa y espera a que se presione una tecla
 	}
-	*/
-	
 };
