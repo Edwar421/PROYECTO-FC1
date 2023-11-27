@@ -151,21 +151,21 @@ void Menu::Menus() {
                         ciudad = elegirCiudad();
                         opcionConsultas.consulta3(ciudad);
                         break;
-                    }/*
-                    case 4: {
+                    }
+                    case 4: {/*
                         string ciudad;
                         ciudad = elegirCiudad();
                         opcionConsultas.consulta4(ciudad);
-                        break;
+                        break;*/
                     }
                     case 5: {
-                        opcionConsultas.consulta5();
+                        opcionConsultas.consulta5(*ciudades);
                         break;
                     }
                     case 6: {
-                        opcionConsultas.consulta6();
+                        opcionConsultas.consulta6(25, 45, "Abogada");
                         break;
-                    }*/
+                    }
                 }
                 break;
             }

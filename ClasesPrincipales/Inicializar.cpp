@@ -145,15 +145,15 @@ Empleado Inicializar::inicializarEmpleado(Lista < Sucursal > * sucursales, Lista
         
         
         cout << "Ingrese el documento de identidad del Empleado" << endl;
-        numIdentificacion = to_string(leerEntrada(0, 9999999999));
+        numIdentificacion = to_string(leerEntrada(0, 999999999));
         
         
         cout << "Ingrese el telefono fijo  del Empleado" << endl;
-        telefonoFijo = to_string(leerEntrada(0, 9999999999));
+        telefonoFijo = to_string(leerEntrada(0, 999999999));
         
         
         cout << "Ingrese el telefono celular  del Empleado" << endl;
-        telefonoCelular = to_string(leerEntrada(0, 9999999999));
+        telefonoCelular = to_string(leerEntrada(0, 999999999));
         
         cout << "Ingrese el email del empleado: ";	
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');	

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
-
-//#include <ctime>
+#include <ctime>
 
 #include "Estructuras de Datos (Consultas)/ArbolConsultas.h"
 
@@ -22,7 +21,7 @@ public:
     OpcionesConsultas(Lista<Ciudad> *ciudades, Lista<Sucursal> *sucursales, Lista<Empleado> *empleados);
 
     // Funcion que calcula la edad
-    //int calcularEdad(Empleado *auxEmpleado);
+    int calcularEdad(Empleado *auxEmpleado);
     void actualizar(Lista<Ciudad> *ciudades, Lista<Sucursal> *sucursales, Lista<Empleado> *empleados);
     void agregarDatosArbolCiudades(Lista<Ciudad> *ciudades, Lista<Sucursal> *sucursales, Lista<Empleado> *empleados);
     void agregarDatosArbolSucursales(Lista<Ciudad> *ciudades, Lista<Sucursal> *sucursales, Lista<Empleado> *empleados);
@@ -31,8 +30,9 @@ public:
     void consulta2(string partido);
     void consulta3(string ciudad);
     void consulta4(string ciudad);
-    void consulta5(string ciudad);
-    void consulta6(string ciudad);
+    void consulta5(Lista<Ciudad> ciudades);
+    //void consulta6(string ciudad);
+    void consulta6(int edadMinima, int edadMaxima, string actividadLaboral);
     void consulta7(Lista<Ciudad> ciudades);
 };
 
@@ -127,7 +127,7 @@ void OpcionesConsultas::agregarDatosArbolSucursales(Lista<Ciudad> *ciudades, Lis
             nodoAux->data->agregarEmpleado(auxEmpleado, auxEmpleado->getCiudadResidencia().getNombre());
     }
 }
-/*
+
 int OpcionesConsultas::calcularEdad(Empleado *auxEmpleado)
 {
     if(auxEmpleado->getFechaNacimiento().length() != 10)
@@ -154,7 +154,7 @@ int OpcionesConsultas::calcularEdad(Empleado *auxEmpleado)
     }
 
     return edad;
-}*/
+}
 /*
 // Cosulta 1. Dado un partido y una ciudad, mostrar la lista de sus candidatos al Concejo y el candidato a la alcaldÃ­a (nombre, edad, sexo).
 void OpcionesConsultas::consulta1(string partido, string ciudad)
@@ -281,10 +281,96 @@ void OpcionesConsultas::consulta3(string ciudad)
     return;
 }
 
+void OpcionesConsultas::consulta5(Lista<Ciudad> ciudades)
+{
+    for (int i = 0; i < ciudades.getTam(); i++)
+    {
+        Ciudad ciudad = ciudades.buscar(i);
+        cout << "Ciudad: " << ciudad.getNombre() << endl;
+
+        // Obtener la lista de nodos de la ciudad actual
+        NodoArbol<string, ArbolConsultas<Sucursal>> *nodoCiudad = arbolCiudades->buscar(ciudad.getNombre());
+        Lista<NodoConsulta> nodosSucursales = nodoCiudad->data->getRaiz()->listaConsulta;
+
+        for (int j = 0; j < nodosSucursales.getTam(); j++)
+        {
+            NodoConsulta nodoSucursal = nodosSucursales.buscar(j);
+
+            // Obtener la lista de empleados de la sucursal actual
+            Queue<Empleado> *empleados = nodoSucursal.empleados;
+
+            // Contadores para hombres y mujeres
+            int hombres = 0;
+            int mujeres = 0;
+
+            for (int k = 0; k < empleados->getTam(); k++)
+            {
+                Empleado *empleado = empleados->retornarElemento(k, 'I');
+
+                // Contar hombres y mujeres
+                if ('M' == empleado->getSexo())
+                {
+                    hombres++;
+                }
+                else if (empleado->getSexo() == 'F')
+                {
+                    mujeres++;
+                }
+            }
+
+            // Mostrar información por sucursal
+            cout << "  Sucursal: " << nodoSucursal.nombre << endl;
+            //cout << "    Gerente: " << nodoSucursal.gerenteSucursal.getNombre() << endl;
+            cout << "    Número de hombres: " << hombres << endl;
+            cout << "    Número de mujeres: " << mujeres << endl;
+        }
+    }
+
+    system("pause");
+    return;
+}
 
 
+void OpcionesConsultas::consulta6(int edadMinima, int edadMaxima, string actividadLaboral)
+{
+    // Iterar sobre las ciudades
+    Cola<NodoArbol<string, ArbolConsultas<Sucursal>> *> CInOrden = arbolCiudades->obtenerInOrden(arbolCiudades->obtenerRaiz());
+    
+    while (!CInOrden.isVacia())
+    {
+        NodoArbol<string, ArbolConsultas<Sucursal>> *nodoCiudad = CInOrden.dequeue();
+        string nombreCiudad = nodoCiudad->clave;
 
+        Lista<NodoConsulta> sucursalesCiudad = nodoCiudad->data->getRaiz()->listaConsulta;
 
+        // Iterar sobre las sucursales en la ciudad
+        for (int j = 0; j < sucursalesCiudad.getTam(); j++)
+        {
+            string nombreSucursal = sucursalesCiudad.buscar(j).nombre;
+            Queue<Empleado> *empleadosSucursal = sucursalesCiudad.buscar(j).empleados;
+
+            // Iterar sobre los empleados en la sucursal
+            for (int k = 0; k < empleadosSucursal->getTam(); k++)
+            {
+                Empleado *auxEmpleado = empleadosSucursal->retornarElemento(k, 'I');
+                int edad = calcularEdad(auxEmpleado);
+
+                // Verificar si la edad está en el rango y la actividad laboral es la buscada
+                if (edad >= edadMinima && edad <= edadMaxima && actividadLaboral == auxEmpleado->getActividadLaboral())
+                {
+                	// Obtener información adicional del empleado
+                    string barrio = auxEmpleado->getBarrioResidencia();
+
+                	// Mostrar la información
+                	cout << "  Barrio: " << barrio << ", Sucursal: " << nombreSucursal << endl;
+                	cout << "    Nombre: " << auxEmpleado->getNombre() << ", Edad: " << edad << ", Actividad Laboral: " << auxEmpleado->getActividadLaboral() << endl;
+                }
+            }
+        }
+    }
+    // Pausar para que el usuario pueda ver los resultados
+    system("pause");
+}
 
 /*
 // Consulta 4. Dada una ciudad, mostrar por cada partido, el candidato a la alcaldÃ­a y los candidatos al concejo.
