@@ -61,5 +61,6 @@ Requisitos Funcionales
 1. Utilización de listas y multilistas para optimizar búsquedas.
 2. Estructuras de datos eficientes en tiempo y memoria.
 3. Menú interactivo para facilitar las consultas.
+   
 4 .Capacidad de calcular la edad de cada persona registrada.
 5. Actualización de archivos planos al finalizar el programa.
