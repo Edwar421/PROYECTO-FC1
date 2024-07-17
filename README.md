@@ -7,10 +7,11 @@ Descripción
 La empresa desea recopilar información de sus empleados para identificar perfiles que optimicen el desarrollo de labores. Los gerentes han ordenado la creación de formularios distribuidos en todas las sucursales ubicadas en países de habla hispana. La información recopilada incluye datos personales y laborales de los empleados, así como información de las sucursales.
 
 Datos Recolectados:
+
 Empleados:
 
-Nombre
-Apellido
+1. Nombre
+2. Apellido
 Tipo de identificación: Cédula de ciudadanía, cédula de extranjería, tarjeta de identidad
 Número de identificación
 Sexo: F o M
