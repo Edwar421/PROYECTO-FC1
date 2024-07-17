@@ -1,4 +1,5 @@
 Gestión de Información de Empleados, Sucursales y Ciudades
+
 Este proyecto tiene como objetivo desarrollar un sistema de gestión de información de empleados, sucursales y ciudades para una empresa. El sistema permite realizar consultas eficientes y manejar datos de manera óptima utilizando estructuras de datos avanzadas como listas, multilistas, pilas, colas y árboles. El programa se implementa en C++ aplicando programación orientada a objetos, principios de alta cohesión y bajo acoplamiento, y optimización de algoritmos.
 
 
