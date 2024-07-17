@@ -1,4 +1,4 @@
-Proyecto de Gestión de Empleados, Sucursales y Ciudades
+
 Este proyecto implementa un sistema de gestión de empleados, sucursales y ciudades en C++. Utiliza estructuras de datos avanzadas como árboles, listas y colas para optimizar la eficiencia y la organización de la información.
 
 Descripción
