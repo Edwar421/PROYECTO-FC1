@@ -12,49 +12,54 @@ Empleados:
 
 1. Nombre
 2. Apellido
-Tipo de identificación: Cédula de ciudadanía, cédula de extranjería, tarjeta de identidad
-Número de identificación
-Sexo: F o M
-Teléfono celular
-Teléfono fijo
-Email
-Fecha de nacimiento
-Ciudad de nacimiento
-País de nacimiento
-Ciudad de residencia
-Dirección
-Barrio
-Actividad laboral: Artes, ciencias sociales, ingenierías, áreas de la salud, otros
-Tiene hijos: S o N
-Número de hijos
-Listado con nombre y fecha de nacimiento de cada hijo: 0-5, 6-10, 11-15, mayor de 15
-Nombre de la sucursal en la que trabaja
+3. Tipo de identificación: Cédula de ciudadanía, cédula de extranjería, tarjeta de identidad
+4. Número de identificación
+5. Sexo: F o M
+6. Teléfono celular
+7. Teléfono fijo
+8. Email
+9. Fecha de nacimiento
+10. Ciudad de nacimiento
+11. País de nacimiento
+12. Ciudad de residencia
+13. Dirección
+14. Barrio
+15. Actividad laboral: Artes, ciencias sociales, ingenierías, áreas de la salud, otros
+16. Tiene hijos: S o N
+17. Número de hijos
+18. Listado con nombre y fecha de nacimiento de cada hijo: 0-5, 6-10, 11-15, mayor de 15
+19. Nombre de la sucursal en la que trabaja
+    
 Sucursales:
 
-Nombre de la sucursal
-Dirección de la sucursal
-Barrio
-Nombre del gerente de la sucursal
-Estructura de Datos:
+1. Nombre de la sucursal
+2. Dirección de la sucursal
+3. Barrio
+4. Nombre del gerente de la sucursal
+5. Estructura de Datos:
+
 En Memoria Secundaria:
 
 Información almacenada en archivos planos actualizados al final del día o al terminar el programa.
+
 Archivos planos para empleados y sucursales.
+
 En Memoria Principal:
 
-Listas, multilistas, arreglos, pilas, colas o árboles para optimizar búsquedas.
-Listas enlazadas clasificadas por sexo, edad, actividad laboral, número de hijos, localidad y sucursal.
+- Listas, multilistas, arreglos, pilas, colas o árboles para optimizar búsquedas.
+- Listas enlazadas clasificadas por sexo, edad, actividad laboral, número de hijos, localidad y sucursal.
 
 Consultas Disponibles
-Número total de personas en una sucursal, clasificados por rangos de edad de los hijos.
-Listado de nombres y apellidos de personas con un número de hijos dado, clasificados por ciudad y país.
-Nombre y apellidos de personas en una ciudad dada, clasificados por ciudad de nacimiento y actividad laboral.
-Número de sucursales con más de un número dado de empleados, incluyendo detalles de la sucursal y el gerente.
-Número de hombres y mujeres en diferentes sucursales, clasificados por país y ciudad.
-Lista de trabajadores en un rango de edad y actividad laboral, clasificados por barrio y sucursal.
+1. Número total de personas en una sucursal, clasificados por rangos de edad de los hijos.
+2. Listado de nombres y apellidos de personas con un número de hijos dado, clasificados por ciudad y país.
+3. Nombre y apellidos de personas en una ciudad dada, clasificados por ciudad de nacimiento y actividad laboral.
+4. Número de sucursales con más de un número dado de empleados, incluyendo detalles de la sucursal y el gerente.
+5. Número de hombres y mujeres en diferentes sucursales, clasificados por país y ciudad.
+6. Lista de trabajadores en un rango de edad y actividad laboral, clasificados por barrio y sucursal.
+
 Requisitos Funcionales
-Utilización de listas y multilistas para optimizar búsquedas.
-Estructuras de datos eficientes en tiempo y memoria.
-Menú interactivo para facilitar las consultas.
-Capacidad de calcular la edad de cada persona registrada.
-Actualización de archivos planos al finalizar el programa.
+1. Utilización de listas y multilistas para optimizar búsquedas.
+2. Estructuras de datos eficientes en tiempo y memoria.
+3. Menú interactivo para facilitar las consultas.
+4 .Capacidad de calcular la edad de cada persona registrada.
+5. Actualización de archivos planos al finalizar el programa.
